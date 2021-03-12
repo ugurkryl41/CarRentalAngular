@@ -1,1 +1,12 @@
-<p>color works!</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Color</th>
+    </tr>
+  </thead>
+  <tr>
+    <ul *ngFor="let color of colors" class="list-group">
+      <li class="list-group-item">{{ color.colorName }}</li>
+    </ul>
+  </tr>
+</table>
