@@ -5,8 +5,10 @@
     </tr>
   </thead>
   <tr>
-    <ul *ngFor="let color of colors" class="list-group">
-      <li class="list-group-item">{{ color.colorName }}</li>
+    <ul class="list-group">
+      <li *ngFor="let color of colors" class="list-group-item">
+        {{ color.colorName }}
+      </li>
     </ul>
   </tr>
 </table>
