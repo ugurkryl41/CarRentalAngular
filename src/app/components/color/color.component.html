@@ -6,8 +6,20 @@
   </thead>
   <tr>
     <ul class="list-group">
-      <li *ngFor="let color of colors" class="list-group-item">
+      <li
+        routerLink="/cars/color/{{ color.id }}"
+        *ngFor="let color of colors"
+        (click)="setCurrentColor(color)"        
+        [class]="getCurrentColorClass(color)"        
+      >
         {{ color.colorName }}
+      </li>
+      <li
+        routerLink="/cars"
+        (click)="setCurrentColor(defaultColor)"
+        [class]="getCurrentColorClass(defaultColor)"        
+      >
+        Hepsi
       </li>
     </ul>
   </tr>

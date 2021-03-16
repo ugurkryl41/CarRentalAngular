@@ -26,15 +26,13 @@ export class BrandComponent implements OnInit {
 
   setCurrentBrand(brand: Brand) {
     this.currentBrand = brand;
-    if(brand.id != -1)
-    {
-      this.defaultBrand.id=0;
-    }   
+    if (brand.id != -1) {
+      this.defaultBrand.id = 0;
+    }
   }
 
   getCurrentBrandClass(brand: Brand) {
-    if(brand.id == -1)
-    {
+    if (brand.id == -1) {
       return 'list-group-item active';
     }
     if (brand == this.currentBrand) {
