@@ -1,24 +1,34 @@
 <div *ngIf="dataLoaded == false" class="spinner-border text-info" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-
 <table *ngIf="dataLoaded != false" class="table">
   <thead>
-    <tr>
-      <th>Id</th>
-      <th>Marka</th>
-      <th>Color</th>
-      <th>Model</th>
-      <th>Fiyat</th>
-      <th>Açıklama</th>
-    </tr>
+    <h5 class="card-title">Arabalar</h5>
   </thead>
-  <tr *ngFor="let car of cars">
-    <td>{{ car.id }}</td>
-    <td>{{ car.brandName }}</td>
-    <td>{{ car.colorName }}</td>
-    <td>{{ car.modelYear }}</td>
-    <td>{{ car.dailyPrice }}</td>
-    <td>{{ car.description }}</td>
-  </tr>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let car of cars" class="col" [class]="getImageClass(car.id)">
+      <div class="card">
+        <img
+          src="{{ imagePath }}"
+          routerLink="/car-image/{{ car.id }}"
+          class="img-thumbnail"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ car.brandName }}</h5>
+          <p class="card-text">
+            <li class="list-group-item list-group-item-primary">
+              Renk: {{ car.colorName }}
+            </li>
+            <li class="list-group-item list-group-item-primary">
+              Model: {{ car.modelYear }}
+            </li>
+            <li class="list-group-item list-group-item-primary">
+              Günlük fiyat: {{ car.dailyPrice }}
+            </li>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </table>

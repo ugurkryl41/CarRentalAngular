@@ -1,0 +1,85 @@
+<br />
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        Araç Detayları
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <div class="accordion-body">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Marka</th>
+                <th>Color</th>
+                <th>Model</th>
+                <th>Fiyat</th>
+                <th>Açıklama</th>
+              </tr>
+            </thead>
+            <tr *ngFor="let car of cars">
+              <td>{{ car.id }}</td>
+              <td>{{ car.brandName }}</td>
+              <td>{{ car.colorName }}</td>
+              <td>{{ car.modelYear }}</td>
+              <td>{{ car.dailyPrice }}</td>
+              <td>{{ car.description }}</td>
+            </tr>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div
+  id="carouselExampleControls"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    <div
+      *ngFor="let carimage of carImages; let i = index"
+      [ngClass]="getSliderClassName(i)"
+    >
+      <img
+        width="400"
+        height="600"
+        src="{{ urlPath }}/{{ carimage.imagePath }}"
+        class="d-block w-100"
+        alt="..."
+      />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleControls"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
