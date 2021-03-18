@@ -16,7 +16,11 @@
           alt="..."
         />
         <div class="card-body">
-          <h5 class="card-title">{{ car.brandName }}</h5>
+          <h5 class="card-title">
+            <li class="list-group-item list-group-item-warning">
+              Marka : {{ car.brandName }}
+            </li>            
+          </h5>
           <p class="card-text">
             <li class="list-group-item list-group-item-primary">
               Renk: {{ car.colorName }}
