@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
+import { Rental } from 'src/app/models/rental';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
+import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
   selector: 'app-car-image',
@@ -13,22 +15,33 @@ import { CarService } from 'src/app/services/car.service';
 export class CarImageComponent implements OnInit {
   cars: Car[] = [];
   carImages: CarImage[] = [];
+  rentals: Rental[] = [];
+
   urlPath: string = 'https://localhost:44399';
 
   constructor(
     private carImagesService: CarImageService,
     private activatedRoute: ActivatedRoute,
-    private carService: CarService
+    private carService: CarService,
+    private rentalService: RentalService
   ) {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carId']) {
         this.getCarImages(params['carId']);
-        this.getCarDetails(params['carId']);
+        //this.getCarDetails(params['carId']);
+        this.getRentalDetails(params['carId']);
       }
     });
   }
 
   ngOnInit(): void {}
+
+  getRentalDetails(carId: number) {
+    let date: Date = new Date();
+    this.rentalService.getRentalsByCarId(carId).subscribe((response) => {      
+        this.rentals = response.data //.filter((p: Rental) => {p.returnDate > date;});     
+    });
+  }
 
   getCarImages(carId: number) {
     this.carImagesService.getCarImages(carId).subscribe((response) => {

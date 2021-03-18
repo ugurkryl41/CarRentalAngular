@@ -6,12 +6,13 @@
     <h5 class="card-title">Arabalar</h5>
   </thead>
   <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div *ngFor="let car of cars" class="col" [class]="getImageClass(car.id)">
+    <div *ngFor="let car of cars" class="col">
       <div class="card">
         <img
-          src="{{ imagePath }}"
+          [src]="getImageByCarId(car)"
+          style="width: 300px; height: 200px;"
           routerLink="/car-image/{{ car.id }}"
-          class="img-thumbnail"
+          class="img-fluid img-thumbnail"
           alt="..."
         />
         <div class="card-body">

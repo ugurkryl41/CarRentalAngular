@@ -19,25 +19,29 @@
       aria-labelledby="headingOne"
       data-bs-parent="#accordionExample"
     >
-      <div class="accordion-body">
-        <table class="table">
+      <div class="accordion-body">        
+          <table class="table">
             <thead>
               <tr>
                 <th>Id</th>
                 <th>Marka</th>
                 <th>Color</th>
-                <th>Model</th>
-                <th>Fiyat</th>
-                <th>Açıklama</th>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>Şirket</th>
+                <th>Kiralama Tarihi</th>
+                <th>Dönüş Tarihi</th>
               </tr>
             </thead>
-            <tr *ngFor="let car of cars">
-              <td>{{ car.id }}</td>
-              <td>{{ car.brandName }}</td>
-              <td>{{ car.colorName }}</td>
-              <td>{{ car.modelYear }}</td>
-              <td>{{ car.dailyPrice }}</td>
-              <td>{{ car.description }}</td>
+            <tr *ngFor="let rental of rentals">
+              <td>{{ rental.id }}</td>
+              <td>{{ rental.brandName }}</td>
+              <td>{{ rental.colorName }}</td>    
+              <td>{{ rental.firstName }}</td>
+              <td>{{ rental.lastName }}</td>
+              <td>{{ rental.companyName }}</td>
+              <td>{{ rental.rentDate }}</td>
+              <td>{{ rental.returnDate}}</td>
             </tr>
           </table>
       </div>
