@@ -11,14 +11,16 @@
       <th>Dönüş Tarihi</th>
     </tr>
   </thead>
-  <tr *ngFor="let rental of rentals">
-    <td>{{ rental.id }}</td>
-    <td>{{ rental.brandName }}</td>
-    <td>{{ rental.colorName }}</td>    
-    <td>{{ rental.firstName }}</td>
-    <td>{{ rental.lastName }}</td>
-    <td>{{ rental.companyName }}</td>
-    <td>{{ rental.rentDate }}</td>
-    <td>{{ rental.returnDate}}</td>
-  </tr>
+  <tbody>
+    <tr *ngFor="let rental of rentals" [class]="returnDateCheck(rental)">
+      <td>{{ rental.id }}</td>
+      <td>{{ rental.brandName }}</td>
+      <td>{{ rental.colorName }}</td>
+      <td>{{ rental.firstName }}</td>
+      <td>{{ rental.lastName }}</td>
+      <td>{{ rental.companyName }}</td>
+      <td>{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
+      <td>{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
+    </tr>
+  </tbody>
 </table>

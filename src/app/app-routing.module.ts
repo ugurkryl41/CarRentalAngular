@@ -4,7 +4,7 @@ import { CarImageComponent } from './components/car-image/car-image.component';
 import { CarComponent } from './components/car/car.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
-import { CarImageService } from './services/car-image.service';
+
 
 
 const routes: Routes = [

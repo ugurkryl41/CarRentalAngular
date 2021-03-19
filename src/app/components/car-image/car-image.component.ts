@@ -62,4 +62,6 @@ export class CarImageComponent implements OnInit {
       return 'carousel-item';
     }
   }
+
+  
 }

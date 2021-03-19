@@ -6,13 +6,18 @@
   </thead>
   <tr>
     <ul class="list-group">
+      <li class="list-group-item">        
+          <label for="brandFilter" class="form-label">Marka Ara</label>
+          <input type="email" [(ngModel)]="brandFilter" class="form-control" 
+          id="brandFilter" placeholder="Örnek:Bmw">        
+      </li>
       <li
         routerLink="/cars/brand/{{ brand.id }}"
-        *ngFor="let brand of brands"
+        *ngFor="let brand of brands | brandPipe:brandFilter"
         (click)="setCurrentBrand(brand)"
         [class]="getCurrentBrandClass(brand)"
       >
-        {{ brand.brandName }}
+        {{ brand.brandName | uppercase }} 
       </li>
       <li
         routerLink="/cars"

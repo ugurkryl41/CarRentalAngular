@@ -7,10 +7,13 @@ import { BrandService } from 'src/app/services/brand.service';
   templateUrl: './brand.component.html',
   styleUrls: ['./brand.component.css'],
 })
+
 export class BrandComponent implements OnInit {
+
   brands: Brand[] = [];
   currentBrand: Brand;
   defaultBrand: Brand = { id: -1, brandName: 'default' };
+  brandFilter="";
 
   constructor(private brandService: BrandService) {}
 

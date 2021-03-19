@@ -3,37 +3,83 @@
 </div>
 <table *ngIf="dataLoaded != false" class="table">
   <thead>
-    <h5 class="card-title">Arabalar</h5>
+    <div class="row" style="border: 1px solid black;">
+      <div class="col-md-2">
+        <div class="btn-group">
+          <button
+            class="btn btn-success btn-sm dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ brandText.brandName }}
+          </button>
+          <ul class="dropdown-menu">
+            <li
+              (click)="getValueBrandClass(brand)"
+              *ngFor="let brand of brands"
+            >
+              <a class="dropdown-item">{{ brand.brandName }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="btn-group">
+          <button
+            class="btn btn-warning btn-sm dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ colorText.colorName }}
+          </button>
+          <ul class="dropdown-menu">
+            <li
+              (click)="getValueColorClass(color)"
+              *ngFor="let color of colors"
+            >
+              <a class="dropdown-item">{{ color.colorName }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button type="button" (click)="getCarByFilter()" class="btn btn-outline-warning">Filtrele</button>
+      </div>
+    </div>
   </thead>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div *ngFor="let car of cars" class="col">
-      <div class="card">
-        <img
-          [src]="getImageByCarId(car)"
-          style="width: 300px; height: 200px;"
-          routerLink="/car-image/{{ car.id }}"
-          class="img-fluid img-thumbnail"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">
-            <li class="list-group-item list-group-item-warning">
-              Marka : {{ car.brandName }}
-            </li>            
-          </h5>
-          <p class="card-text">
-            <li class="list-group-item list-group-item-primary">
-              Renk: {{ car.colorName }}
-            </li>
-            <li class="list-group-item list-group-item-primary">
-              Model: {{ car.modelYear }}
-            </li>
-            <li class="list-group-item list-group-item-primary">
-              Günlük fiyat: {{ car.dailyPrice }}
-            </li>
-          </p>
+  <tbody>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div *ngFor="let car of cars" class="col">
+        <div class="card">
+          <img
+            [src]="getImageByCarId(car)"
+            style="width: 300px; height: 200px"
+            routerLink="/car-image/{{ car.id }}"
+            class="img-fluid img-thumbnail"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">
+              <li class="list-group-item list-group-item-warning">
+                Marka : {{ car.brandName }}
+              </li>
+            </h5>
+            <p class="card-text">
+              <li class="list-group-item list-group-item-primary">
+                Renk: {{ car.colorName }}
+              </li>
+              <li class="list-group-item list-group-item-primary">
+                Model: {{ car.modelYear }}
+              </li>
+              <li class="list-group-item list-group-item-primary">
+                Günlük fiyat: {{ car.dailyPrice | currency: "₺" }}
+              </li>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </tbody>
 </table>

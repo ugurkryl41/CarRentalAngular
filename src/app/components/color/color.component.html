@@ -6,13 +6,17 @@
   </thead>
   <tr>
     <ul class="list-group">
+      <li class="list-group-item">        
+        <label for="colorFilter" class="form-label">Renk Ara</label>
+        <input type="email"  [(ngModel)]="colorFilter" class="form-control" id="colorFilter" placeholder="Örnek:Red">        
+      </li>
       <li
         routerLink="/cars/color/{{ color.id }}"
-        *ngFor="let color of colors"
+        *ngFor="let color of colors | colorPipe:colorFilter"
         (click)="setCurrentColor(color)"        
         [class]="getCurrentColorClass(color)"        
       >
-        {{ color.colorName }}
+        {{ color.colorName | uppercase }}
       </li>
       <li
         routerLink="/cars"

@@ -1,9 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
+import { Color } from 'src/app/models/color';
+import { BrandService } from 'src/app/services/brand.service';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
+import { ColorService } from 'src/app/services/color.service';
 
 @Component({
   selector: 'app-car',
@@ -12,17 +16,22 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarComponent implements OnInit {
   cars: Car[] = [];
-  carImages: CarImage[]=[];
+  carImages: CarImage[] = [];
   carImages2: CarImage[];
-
+  colors: Color[];
+  brands: Brand[];
   dataLoaded = false;
+  brandText: Brand = { id: -1, brandName: 'Marka Seçiniz' };
+  colorText: Color = { id: -1, colorName: 'Renk Seçiniz' };
 
   //imagePath: string = 'https://localhost:44399/Images/default.png';
 
   constructor(
     private carService: CarService,
     private activatedRoute: ActivatedRoute,
-    private carImageService: CarImageService
+    private carImageService: CarImageService,
+    private brandService: BrandService,
+    private colorService: ColorService
   ) {}
 
   ngOnInit(): void {
@@ -39,23 +48,27 @@ export class CarComponent implements OnInit {
   }
   getImageClassAll() {
     this.carImageService.getCarImagesAll().subscribe((response) => {
-      this.carImages = response.data;       
-    });  
+      this.carImages = response.data;
+    });
+    this.brandService.getBrands().subscribe((response) => {
+      this.brands = response.data;
+    });
+    this.colorService.getColors().subscribe((response) => {
+      this.colors = response.data;
+    });
   }
 
-  getImageByCarId(car:Car):string{
+  getImageByCarId(car: Car): string {
     this.carImages2 = [];
-    this.carImages.forEach((p:CarImage)=> {
-      if(p.carId === car.id)
-      {
+    this.carImages.forEach((p: CarImage) => {
+      if (p.carId === car.id) {
         this.carImages2.push(p);
-      }      
+      }
     });
-    if(this.carImages2.length === 0)
-    {
-        return 'https://localhost:44399/Images/default.png';
+    if (this.carImages2.length === 0) {
+      return 'https://localhost:44399/Images/default.png';
     }
-    return "https://localhost:44399"+this.carImages2[0].imagePath;
+    return 'https://localhost:44399' + this.carImages2[0].imagePath;
   }
 
   getCarsDetails() {
@@ -83,4 +96,19 @@ export class CarComponent implements OnInit {
       this.dataLoaded = true;
     });
   }
+
+  getValueBrandClass(brand: Brand) {
+    this.brandText = brand;
+  }
+  getValueColorClass(color: Color) {
+    this.colorText= color;
+  }
+
+  getCarByFilter(){
+    this.carService.getCarDetailsByBrandColor(this.brandText.id,this.colorText.id).subscribe((response)=>{
+      this.cars = response.data;
+      this.dataLoaded = true;
+    });
+  } 
+ 
 }
