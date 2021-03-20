@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Rental } from 'src/app/models/rental';
 import { RentCar } from 'src/app/models/rentcar';
 import { RentalService } from 'src/app/services/rental.service';
+import {FormControl,FormBuilder,FormGroup,Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-car-rent',
@@ -63,20 +64,25 @@ export class CarRentComponent implements OnInit {
 
   payment() {
     if (true) {
-      //this.rentalcar()
+      this.rentalcar()
       this.toastrService.success('Kiralama işlemi tamamlandı.');
       console.log('Kiralandı..');
     }
   }
 
   rentalcar() {
+
     this.rentcar = {
       carId: parseInt(this.data.toString()),
       customerId: 2002,
       rentDate: new Date(this.rentDate),
       returnDate: new Date(this.returnDate),
     };
-    this.rentalService.setRentalCar(this.rentcar).subscribe((data) => {
+
+    let rentcarobject = Object.assign({},this.rentcar  )
+    
+    
+    this.rentalService.setRentalCar(rentcarobject).subscribe((data) => {
       console.log(data);
     });
   }

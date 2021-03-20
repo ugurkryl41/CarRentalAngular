@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Rental } from 'src/app/models/rental';
 
 @Component({
   selector: 'app-car-detail',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarDetailComponent implements OnInit {
 
+ @Input() rental:Rental[]
+ 
   constructor() { }
 
   ngOnInit(): void {

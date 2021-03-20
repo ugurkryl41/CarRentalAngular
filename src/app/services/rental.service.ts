@@ -25,14 +25,9 @@ export class RentalService {
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
   }
 
-  setRentalCar(rentcar:RentCar){
+  setRentalCar(rentcar:RentCar):Observable<ResponseModel>{
     let newPath=this.apiUrl+"rentals/add"     
-    return this.httpClient.post(newPath,{
-      "carId":rentcar.carId,
-      "customerId":rentcar.customerId,
-      "rentDate":rentcar.rentDate,
-      "returnDate":rentcar.returnDate
-    });
+    return this.httpClient.post<ResponseModel>(newPath,rentcar);
   }
   
 }

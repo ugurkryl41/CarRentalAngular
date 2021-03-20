@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Rental } from 'src/app/models/rental';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -8,18 +8,13 @@ import { RentalService } from 'src/app/services/rental.service';
   styleUrls: ['./rental.component.css'],
 })
 export class RentalComponent implements OnInit {
-  rentals: Rental[] = [];
+  
+  @Input() rentals: Rental[] = [];
 
   constructor(private rentalService: RentalService) {}
 
   ngOnInit(): void {
     this.getRentals();
-  }
-
-  getRentals() {
-    this.rentalService.getRentals().subscribe((response) => {
-      this.rentals = response.data;
-    });
   }
 
   returnDateCheck(rental: Rental): string {
@@ -28,5 +23,9 @@ export class RentalComponent implements OnInit {
       return 'table-secondary'
     }
     return 'table-danger';
+  }
+  
+  getRentals(){
+    this.rentalService.getRentals().subscribe(p=>{this.rentals = p.data})
   }
 }
