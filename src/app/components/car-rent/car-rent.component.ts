@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Rental } from 'src/app/models/rental';
 import { RentCar } from 'src/app/models/rentcar';
 import { RentalService } from 'src/app/services/rental.service';
@@ -17,7 +18,10 @@ export class CarRentComponent implements OnInit {
   @Input() data: number;
   @Input() datarental: Rental;
 
-  constructor(private rentalService: RentalService) {}
+  constructor(
+    private rentalService: RentalService,
+    private toastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -57,11 +61,11 @@ export class CarRentComponent implements OnInit {
     }
   }
 
-  payment(){
-    if(true)
-    {
+  payment() {
+    if (true) {
       //this.rentalcar()
-      console.log("Kiralandı..")
+      this.toastrService.success('Kiralama işlemi tamamlandı.');
+      console.log('Kiralandı..');
     }
   }
 
