@@ -37,6 +37,7 @@ import { CarRentComponent } from './components/car-rent/car-rent.component';
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule,
   FormsModule],
+  
   providers: [],
   bootstrap: [AppComponent],
 })

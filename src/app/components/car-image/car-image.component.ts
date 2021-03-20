@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { now } from 'moment';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
 import { Rental } from 'src/app/models/rental';
@@ -17,6 +18,9 @@ export class CarImageComponent implements OnInit {
   carImages: CarImage[] = [];
   rentals: Rental[] = [];
 
+  dataCarId:number
+  dataDate:Rental
+
   urlPath: string = 'https://localhost:44399';
 
   constructor(
@@ -30,6 +34,7 @@ export class CarImageComponent implements OnInit {
         this.getCarImages(params['carId']);
         //this.getCarDetails(params['carId']);
         this.getRentalDetails(params['carId']);
+        this.dataCarId = params['carId'];       
       }
     });
   }
@@ -37,9 +42,16 @@ export class CarImageComponent implements OnInit {
   ngOnInit(): void {}
 
   getRentalDetails(carId: number) {
-    let date: Date = new Date();
+    let date: Date = new Date(Date.now());
     this.rentalService.getRentalsByCarId(carId).subscribe((response) => {      
-        this.rentals = response.data //.filter((p: Rental) => {p.returnDate > date;});     
+        this.rentals = response.data //.filter((p: Rental) => {p.returnDate > date;}); 
+        response.data.forEach((p)=>{
+          if((new Date(p.returnDate)) > (new Date(date.toJSON())))
+          {
+            this.dataDate = p
+          }
+        })
+        //console.log(this.dataDate)
     });
   }
 

@@ -1,7 +1,12 @@
-<div class="container-fluid">
-  <br />
-  <div class="row">
-    <div class="col-sm">
+<table class="table">
+  <thead>
+    <br>
+  </thead>
+  <tbody>
+    <tr>
+      <app-car-rent [data]="dataCarId" [datarental]="dataDate"></app-car-rent>
+    </tr>
+    <tr>
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div *ngFor="let carimage of carImages; let i = index" [ngClass]="getSliderClassName(i)">
@@ -20,16 +25,9 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-    </div>
-  </div>
-  <br />
-  <div class="row">
-    <div class="row">
-      <app-car-detail></app-car-detail>
-    </div>
-  </div>
-  <br />
-  <div class="row">
-    <div class="col-sm"></div>
-  </div>
-</div>
+    </tr>
+    <tr>
+      <app-car-detail></app-car-detail>      
+    </tr>
+  </tbody>
+</table>
