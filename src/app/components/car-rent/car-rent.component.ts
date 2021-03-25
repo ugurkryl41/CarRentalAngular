@@ -91,7 +91,7 @@ export class CarRentComponent implements OnInit {
         this.rentalCarForm.controls['returnDate'].value >
           this.rentalCarForm.controls['rentDate'].value
       ) {
-        // SAPITIYORRRRRRRRRRR
+        
         let rent = new Date(this.rentalCarForm.controls['rentDate'].value).getTime(); 
         let returnx = new Date(this.rentalCarForm.controls['returnDate'].value).getTime();       
         this.totalfiyat = (Math.abs(rent-returnx)/(1000*60*60*24)) * this.rentcar.dailyPrice;
