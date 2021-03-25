@@ -8,7 +8,7 @@
     <ul class="list-group">
       <li class="list-group-item">        
         <label for="colorFilter" class="form-label">Renk Ara</label>
-        <input type="email"  [(ngModel)]="colorFilter" class="form-control" id="colorFilter" placeholder="Örnek:Red">        
+        <input type="email"  [(ngModel)]="colorFilter" class="form-control" id="colorFilter" placeholder="Örnek:Kırmızı">        
       </li>
       <li
         routerLink="/cars/color/{{ color.id }}"
@@ -17,13 +17,6 @@
         [class]="getCurrentColorClass(color)"        
       >
         {{ color.colorName | uppercase }}
-      </li>
-      <li
-        routerLink="/cars"
-        (click)="setCurrentColor(defaultColor)"
-        [class]="getCurrentColorClass(defaultColor)"        
-      >
-        Hepsi
       </li>
     </ul>
   </tr>

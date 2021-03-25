@@ -12,7 +12,7 @@ export class BrandComponent implements OnInit {
 
   brands: Brand[] = [];
   currentBrand: Brand;
-  defaultBrand: Brand = { id: -1, brandName: 'default' };
+
   brandFilter="";
 
   constructor(private brandService: BrandService) {}
@@ -29,15 +29,9 @@ export class BrandComponent implements OnInit {
 
   setCurrentBrand(brand: Brand) {
     this.currentBrand = brand;
-    if (brand.id != -1) {
-      this.defaultBrand.id = 0;
-    }
   }
 
   getCurrentBrandClass(brand: Brand) {
-    if (brand.id == -1) {
-      return 'list-group-item active';
-    }
     if (brand == this.currentBrand) {
       return 'list-group-item active';
     } else {

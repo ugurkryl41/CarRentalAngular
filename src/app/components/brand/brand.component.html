@@ -12,19 +12,12 @@
           id="brandFilter" placeholder="Örnek:Bmw">        
       </li>
       <li
+        *ngFor="let brand of brands | brandPipe:brandFilter"          
         routerLink="/cars/brand/{{ brand.id }}"
-        *ngFor="let brand of brands | brandPipe:brandFilter"
         (click)="setCurrentBrand(brand)"
         [class]="getCurrentBrandClass(brand)"
       >
         {{ brand.brandName | uppercase }} 
-      </li>
-      <li
-        routerLink="/cars"
-        (click)="setCurrentBrand(defaultBrand)"
-        [class]="getCurrentBrandClass(defaultBrand)"
-      >
-        Hepsi
       </li>
     </ul>
   </tr>

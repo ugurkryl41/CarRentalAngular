@@ -1,0 +1,76 @@
+<div class="container" style="padding-top: 1%;">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title"> Marka Ekle</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="brandAddForm">
+                    <div class="mb-3">
+                        <label for="brandName">Marka Adı</label>
+                        <div class="form-group">
+                            <input type="text" id="brandName" formControlName="brandName" class="form-control"
+                                placeholder="Marka adı" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th> Id </th>
+                    <th> Marka</th>
+                    <th> Ayarlar </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let brand of brands">
+                    <th scope="row">-</th>
+                    <th> {{brand.id}} </th>
+                    <th> {{brand.brandName}} </th>
+                    <th>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" (click)="getBrand(brand)">
+                            Düzenle
+                        </button>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Marka Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label>Marka Adı</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control"
+                                [value]="brandxx.brandName" (keyup)="handleKeyup($event)"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateBrand()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>

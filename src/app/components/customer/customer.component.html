@@ -1,20 +1,27 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Ad</th>
-      <th>Soyad</th>
-      <th>Email</th>
-      <th>Durum</th>
-      <th>Şirket</th>
-    </tr>
-  </thead>
-  <tr *ngFor="let customer of customers">
-    <td>{{ customer.id }}</td>
-    <td>{{ customer.firstName }}</td>
-    <td>{{ customer.lastName }}</td>
-    <td>{{ customer.email }}</td>
-    <td>{{ customer.status }}</td>
-    <td>{{ customer.companyName }}</td>
-  </tr>
-</table>
+<div class="container" style="padding-top: 1%;">
+  <div class="row">
+    <table class="table table-success table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id</th>
+          <th scope="col">Ad</th>
+          <th scope="col">Soyad</th>
+          <th scope="col">Email</th>
+          <th scope="col">Durum</th>
+          <th scope="col">Şirket</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let customer of customers">
+        <td  scope="row">-</td>
+        <td  scope="row">{{ customer.id }}</td>
+        <td  scope="row">{{ customer.firstName }}</td>
+        <td  scope="row">{{ customer.lastName }}</td>
+        <td  scope="row">{{ customer.email }}</td>
+        <td  scope="row">{{ customer.status }}</td>
+        <td  scope="row">{{ customer.companyName }}</td>
+      </tr>
+    </table>
+  </div>
+
+</div>

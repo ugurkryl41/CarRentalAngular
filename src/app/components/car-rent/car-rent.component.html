@@ -1,37 +1,93 @@
-<div class="d-grid gap-2 col-8 mx-auto" style="border: 1px solid black;">
- <div>
-  <label> Kiralama Tarihi Seçiniz</label>
-  <input class="form-control"  type="datetime-local"  min="{{ getRentMinDate() }}" value="{{getRentMinDate()}}"
-    [(ngModel)]="rentDate" />
- </div>
-  <div>
-    <label> Dönüş Tarihi Seçiniz</label>
-  <input class="form-control"  type="datetime-local"  min="{{ getReturnMinDate() }}" value="{{getReturnMinDate()}}"
-    [(ngModel)]="returnDate" />
-  </div>
-  <div>
-    <button type="button" class="btn btn-primary" (click)="rentacar()" data-bs-toggle="modal" data-bs-target="#exampleModal">     
-       Kirala  
-    </button>
-  </div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" *ngIf="datecheck==false" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" *ngIf="datecheck==true" data-bs-dismiss="modal" (click)="payment()">Öde</button>
-      </div>
+<div class="content" style="padding-top: 1%;">
+    <div class="col-md-12" *ngIf="rentboard">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title"> Araba Kirala</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="rentalCarForm">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label class="form-control">Seçilen Araba ID : {{rentCarId}} </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label class="form-control">Müşteri ID : {{rentcarCustomerId}}</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rentDate">Alış Tarihi Seçiniz</label>
+                        <div class="form-group">
+                            <input type="datetime-local" id="rentDate"  formControlName="rentDate" class="form-control"  required/>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="returnDate">İade Tarihi Seçiniz</label>
+                        <div class="form-group">
+                            <input type="datetime-local" id="returnDate"  formControlName="returnDate" class="form-control" required  />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="createRent()">Kirala</button>
+            </div>
+        </div>
     </div>
-  </div>
+    <div class="row">
+        <br>
+    </div>
+    <div class="col-md-12" style="border: cadetblue 1px solid;" *ngIf="paymentboard">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title"> Ödeme Ekranı</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="paymentCarForm">
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label class="form-control">Seçilen Araba ID : {{rentCarId}}</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-group">
+                            <label class="form-control">Müşteri ID : {{rentcarCustomerId}}</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cartName">Kart Üzerindeki İsmi Giriniz</label>
+                        <div class="form-group">
+                            <input type="text" id="cartName" formControlName="cartName" class="form-control"
+                                placeholder="Uğur" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cartNumber">Kart Numarasını Giriniz</label>
+                        <div class="form-group">
+                            <input type="text" id="cartNumber" formControlName="cartNumber" class="form-control"
+                                placeholder="5000-4520-5596-1234" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cartDate">Kartın Son Kullanma Tarihini Giriniz</label>
+                        <div class="form-group">
+                            <input type="text" id="cartDate" formControlName="cartDate" class="form-control"
+                                placeholder="10/24" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="totalPrice">Toplam Fiyat</label>
+                        <div class="form-group">
+                            <input type="text" id="totalPrice" formControlName="totalPrice" class="form-control"
+                                placeholder="{{totalfiyat}} YTL" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="payment()">Öde</button>
+            </div>
+        </div>
+    </div>
 </div>

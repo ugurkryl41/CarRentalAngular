@@ -1,66 +1,54 @@
 <div *ngIf="dataLoaded == false" class="spinner-border text-info" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
-<br>
-<table *ngIf="dataLoaded != false" class="table">
-  <thead>
-    <div class="row" style="border: 1px solid black;">
-      <div class="col-md-2">
-        <div class="btn-group">
-          <button
-            class="btn btn-success btn-sm dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            {{ brandText.brandName }}
-          </button>
-          <ul class="dropdown-menu">
-            <li
-              (click)="getValueBrandClass(brand)"
-              *ngFor="let brand of brands"
-            >
-              <a class="dropdown-item">{{ brand.brandName }}</a>
-            </li>
-          </ul>
-        </div>
+<div class="container">
+  <div class="row" style="padding-top: 1%;">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title" style="text-align: center;"> Arama Kısmı </h5>
       </div>
-      <div class="col-md-2">
-        <div class="btn-group">
-          <button
-            class="btn btn-warning btn-sm dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            {{ colorText.colorName }}
-          </button>
-          <ul class="dropdown-menu">
-            <li
-              (click)="getValueColorClass(color)"
-              *ngFor="let color of colors"
-            >
-              <a class="dropdown-item">{{ color.colorName }}</a>
-            </li>
-          </ul>
-        </div>
+      <div class="card-body">
+        <form>
+          <div class="mb-3">
+            <div class="btn-group" style="width:100%;">
+              <button type="button" data-bs-toggle="dropdown" class="form-select" aria-label="Default select example"
+                aria-expanded="false">
+                {{ brandText.brandName }}
+              </button>
+              <ul class="dropdown-menu" style="width:100%;">
+                <li (click)="getValueBrandClass(brand)" *ngFor="let brand of brands| slice:1; let i = index;">
+                  <a class="dropdown-item">{{ brand.brandName }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="btn-group" style="width:100%;">
+              <button type="button" data-bs-toggle="dropdown" class="form-select" aria-label="Default select example"
+                aria-expanded="false">
+                {{ colorText.colorName }}
+              </button>
+              <ul class="dropdown-menu" style="width:100%;">
+                <li (click)="getValueColorClass(color)" *ngFor="let color of colors| slice:1; let i = index;">
+                  <a class="dropdown-item">{{ color.colorName }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="col-md-2">
-        <button type="button" (click)="getCarByFilter()" class="btn btn-outline-warning">Filtrele</button>
+      <div class="d-grid gap-2" style="margin-bottom: 1%;">
+        <button class="btn btn-outline-secondary" (click)="filtrele()" >Filtrele</button>
+        <button class="btn btn-outline-secondary" (click)="allitem()" > Tümünü Göster</button>
       </div>
     </div>
-  </thead>
-  <tbody>
+  </div>
+  <div class="row">
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div *ngFor="let car of cars" class="col">
         <div class="card">
-          <img
-            [src]="getImageByCarId(car)"
-            style="width: 300px; height: 200px"
-            routerLink="/car-image/{{ car.id }}"
-            class="img-fluid img-thumbnail"
-            alt="..."
-          />
+          <img [src]="carimagethum(car)" style="width: 300px; height: 200px" routerLink="/car-detail/{{ car.id }}"
+            class="img-fluid img-thumbnail" alt="..." />
           <div class="card-body">
             <h5 class="card-title">
               <li class="list-group-item list-group-item-warning">
@@ -77,10 +65,14 @@
               <li class="list-group-item list-group-item-primary">
                 Günlük fiyat: {{ car.dailyPrice | currency: "₺" }}
               </li>
+              <li class="list-group-item list-group-item-warning">
+                <button class="btn btn-primary" type="button" style="width: 100%;"
+                  routerLink="/car-rent/{{ car.id }}">Kirala</button>
+              </li>
             </p>
           </div>
         </div>
       </div>
     </div>
-  </tbody>
-</table>
+  </div>
+</div>

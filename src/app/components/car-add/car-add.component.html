@@ -1,0 +1,140 @@
+<div class="container" style="padding-top: 1%;">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title"> Araba Ekle</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="carAddForm">
+                    <div class="mb-3">
+                        <label for="brandId">Marka Seçiniz</label>
+                        <select id="brandId" class="form-select" aria-label="Default select example"
+                            formControlName="brandId">
+                            <option [ngValue]="brand.id" *ngFor="let brand of brands| slice:1; let i = index;">
+                                {{brand.brandName}} </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="colorId">Renk Seçiniz</label>
+                        <select id="colorId" class="form-select" aria-label="Default select example"
+                            formControlName="colorId">
+                            <option [ngValue]="color.id" *ngFor="let color of colors| slice:1; let i = index;">
+                                {{color.colorName}} </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelYear">Model Girin</label>
+                        <div class="form-group">
+                            <input type="number" placeholder="2021" id="modelYear" formControlName="modelYear"
+                                class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dailyPrice">Fiyat Girin</label>
+                        <div class="form-group">
+                            <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description">Açıklama Girin</label>
+                        <div class="form-group">
+                            <input type="text" id="description" formControlName="description" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th> Marka </th>
+                    <th> Renk </th>
+                    <th> Model </th>
+                    <th> Fiyat </th>
+                    <th> Açıklama </th>
+                    <th> Ayarlar </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cardto of carsDto">
+                    <th scope="row">-</th>
+                    <th> {{cardto.brandName}} </th>
+                    <th> {{cardto.colorName}} </th>
+                    <th> {{cardto.modelYear}} </th>
+                    <th> {{cardto.dailyPrice}} </th>
+                    <th> {{cardto.description}} </th>
+                    <th> <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" (click)="getCar(cardto)">
+                            Düzenle
+                        </button></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Araba Düzenle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">                
+                <form [formGroup]="carUpdateForm">   
+                    <div class="mb-3">
+                        <label for="idx">Araba ID {{carId}}</label>
+                    </div>                
+                    <div class="mb-3">                        
+                        <label for="brandIdx">Marka Seçiniz</label>
+                        <select id="brandIdx" class="form-select" aria-label="Default select example"
+                            formControlName="brandId">
+                            <option [ngValue]="brand.id" *ngFor="let brand of brands| slice:1; let i = index;">
+                                {{brand.brandName}} </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="colorIdx">Renk Seçiniz</label>
+                        <select id="colorIdx" class="form-select" aria-label="Default select example"
+                            formControlName="colorId">
+                            <option [ngValue]="color.id" *ngFor="let color of colors| slice:1; let i = index;">
+                                {{color.colorName}} </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="modelYearx">Model Girin</label>
+                        <div class="form-group">
+                            <input type="number" placeholder="2021" id="modelYearx" formControlName="modelYear"
+                                class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dailyPricex">Fiyat Girin</label>
+                        <div class="form-group">
+                            <input type="number" id="dailyPricex" formControlName="dailyPrice" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descriptionx">Açıklama Girin</label>
+                        <div class="form-group">
+                            <input type="text" id="descriptionx" formControlName="description" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateCar()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CarImageComponent } from './components/car-image/car-image.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
+import { CarRentComponent } from './components/car-rent/car-rent.component';
 import { CarComponent } from './components/car/car.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 
@@ -13,6 +18,9 @@ const routes: Routes = [
   },
   {
     path:"cars", component:CarComponent   
+  },
+  {
+    path:"car-detail/:carid", component:CarDetailComponent  
   },
   {
     path:"cars/brand/:brandid", component:CarComponent   
@@ -27,7 +35,19 @@ const routes: Routes = [
     path:"rentals",  component:RentalComponent
   },
   {
-    path:"car-image/:carId",  component:CarImageComponent
+    path:"brand-add",  component:BrandAddComponent
+  },
+  {
+    path:"color-add",  component:ColorAddComponent
+  },
+  {
+    path:"car-add",  component:CarAddComponent
+  },
+  {
+    path:"car-image-add",  component:CarImageAddComponent
+  },
+  {
+    path:"car-rent/:carid",  component:CarRentComponent
   },
 ];
 

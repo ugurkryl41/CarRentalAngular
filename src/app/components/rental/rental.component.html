@@ -1,26 +1,32 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Marka</th>
-      <th>Color</th>
-      <th>Ad</th>
-      <th>Soyad</th>
-      <th>Şirket</th>
-      <th>Kiralama Tarihi</th>
-      <th>Dönüş Tarihi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let rental of rentals" [class]="returnDateCheck(rental)">
-      <td>{{ rental.id }}</td>
-      <td>{{ rental.brandName }}</td>
-      <td>{{ rental.colorName }}</td>
-      <td>{{ rental.firstName }}</td>
-      <td>{{ rental.lastName }}</td>
-      <td>{{ rental.companyName }}</td>
-      <td>{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
-      <td>{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container" style="padding-top: 1%;">
+  <div class="row">
+    <table class="table table-success table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id</th>
+          <th scope="col">Marka</th>
+          <th scope="col">Color</th>
+          <th scope="col">Ad</th>
+          <th scope="col">Soyad</th>
+          <th scope="col">Şirket</th>
+          <th scope="col">Kiralama Tarihi</th>
+          <th scope="col">Dönüş Tarihi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rental of rentals" [class]="returnDateCheck(rental)">
+          <td scope="row"> - </td>
+          <td scope="row">{{ rental.id }}</td>
+          <td scope="row">{{ rental.brandName }}</td>
+          <td scope="row">{{ rental.colorName }}</td>
+          <td scope="row">{{ rental.firstName }}</td>
+          <td scope="row">{{ rental.lastName }}</td>
+          <td scope="row">{{ rental.companyName }}</td>
+          <td scope="row">{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
+          <td scope="row">{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,15 +1,66 @@
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-        aria-expanded="true" aria-controls="collapseOne">
-        Araç Detayları
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-      data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <app-rental [rentals]="rental"></app-rental>
+<div class="container" style="padding-top: 1%;">
+  <div class="row">
+    <div class="card mb-3">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div *ngFor="let carimage of carImages; let i = index" [ngClass]="getSliderClassName(i)">
+            <img width="100%" height="500px" src="{{ urlPath }}/{{ carimage.imagePath }}" class="d-block w-100"
+              alt="..." />
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>     
+      <div class="card-body" >
+        <h5 class="card-title">
+          <li class="list-group-item list-group-item-warning">
+            Marka : {{ carx.brandName }}
+          </li>
+        </h5>
+        <p class="card-text">
+          <li class="list-group-item list-group-item-primary">
+            Renk : {{ carx.colorName }}
+          </li>
+          <li class="list-group-item list-group-item-primary">
+            Model : {{ carx.modelYear }}
+          </li>
+          <li class="list-group-item list-group-item-primary">
+            Günlük fiyat : {{ carx.dailyPrice | currency: "₺" }}
+          </li>
+          <li class="list-group-item list-group-item-primary">
+            Açıklama : {{ carx.description }}
+          </li>
+          <li class="list-group-item list-group-item-warning">
+            <button class="btn btn-primary" type="button" style="width: 100%;"
+              routerLink="/car-rent/{{ carx.id }}">Kirala</button>
+          </li>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="padding-top: 1%;">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="true" aria-controls="collapseOne">
+            Araç Kiralama Detayları
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">  
+            <app-rental [rentals]="rentalscar"></app-rental>
+          </div>
+        </div>
       </div>
     </div>
   </div>
