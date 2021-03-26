@@ -4,7 +4,6 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Id</th>
           <th scope="col">Marka</th>
           <th scope="col">Color</th>
           <th scope="col">Ad</th>
@@ -16,8 +15,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let rental of rentals" [class]="returnDateCheck(rental)">
-          <td scope="row"> - </td>
-          <td scope="row">{{ rental.id }}</td>
+          <td scope="row"> - </td>          
           <td scope="row">{{ rental.brandName }}</td>
           <td scope="row">{{ rental.colorName }}</td>
           <td scope="row">{{ rental.firstName }}</td>

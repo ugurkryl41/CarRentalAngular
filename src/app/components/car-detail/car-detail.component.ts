@@ -15,7 +15,9 @@ import { RentalService } from 'src/app/services/rental.service';
 export class CarDetailComponent implements OnInit {
 
   dataCarId:number
+
   carx:CarDto = {brandName:"",modelYear:-1,description:"",dailyPrice:-1,colorName:"",id:-1}
+
   rentalscar:Rental[]
   carImages: CarImage[] = [];
 
@@ -29,8 +31,7 @@ export class CarDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carid']) {
         this.getCarDetails(params['carid'])
-        this.getCarImages(params['carid']);
-        this.getRentalDetails(params['carid']);       
+        this.getCarImages(params['carid']);     
         this.dataCarId = params['carid'];       
       }
     });
@@ -38,19 +39,13 @@ export class CarDetailComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
+     this.getRentalDetails(this.dataCarId)
   }
 
-  getRentalDetails(carId: number) {
-    let date: Date = new Date(Date.now());
+  getRentalDetails(carId: number) {    
     this.rentalService.getRentalsByCarId(carId).subscribe((response) => {      
-        this.rentalscar = response.data 
-        response.data.forEach((p)=>{
-          if((new Date(p.returnDate)) > (new Date(date.toJSON())))
-          {
-            //this.dataDate = p
-          }
-        })
+        this.rentalscar = response.data
+        console.log(response.data)
     });
   }
 
@@ -73,6 +68,14 @@ export class CarDetailComponent implements OnInit {
     } else {
       return 'carousel-item';
     }
+  }
+
+  returnDateCheck(rental: Rental): string {
+    let date: Date = new Date();
+    if (rental.returnDate.toString() < date.toJSON().toString()) {
+      return 'table-secondary'
+    }
+    return 'table-danger';
   }
 
 }

@@ -58,7 +58,32 @@
         <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
           data-bs-parent="#accordionExample">
           <div class="accordion-body">  
-            <app-rental [rentals]="rentalscar"></app-rental>
+            <table class="table table-success table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Marka</th>
+                  <th scope="col">Color</th>
+                  <th scope="col">Ad</th>
+                  <th scope="col">Soyad</th>
+                  <th scope="col">Şirket</th>
+                  <th scope="col">Kiralama Tarihi</th>
+                  <th scope="col">Dönüş Tarihi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rental of rentalscar" [class]="returnDateCheck(rental)">
+                  <td scope="row"> - </td>          
+                  <td scope="row">{{ rental.brandName }}</td>
+                  <td scope="row">{{ rental.colorName }}</td>
+                  <td scope="row">{{ rental.firstName }}</td>
+                  <td scope="row">{{ rental.lastName }}</td>
+                  <td scope="row">{{ rental.companyName }}</td>
+                  <td scope="row">{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
+                  <td scope="row">{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
