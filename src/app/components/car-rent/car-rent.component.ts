@@ -66,11 +66,12 @@ export class CarRentComponent implements OnInit {
 
   createRent() {
     this.rentalCarForm.patchValue({
-      carId: 3004,
-      customerId: 2002,
+      carId: this.rentCarId,
+      customerId: this.rentcarCustomerId,
     });
     
     let datacheckModel = Object.assign({},this.rentalCarForm.value)
+    
     this.rentalService.rentalDateCheck(datacheckModel).subscribe(response => {
       if(response.success){
         if (!this.rentalCarForm.valid) {
