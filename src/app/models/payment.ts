@@ -5,6 +5,7 @@ export interface Payment {
     cartName:string;
     cartNumber:string;
     cartDate:string;
+    cartCvv:number
     totalPrice:number;
     paymentDate:Date;
   }

@@ -42,8 +42,9 @@ export class PaymentComponent implements OnInit {
       cartName: ['', Validators.required],
       cartNumber: ['', Validators.required],
       cartDate: ['', Validators.required],
+      cartCvv:['',Validators.maxLength(3)],
       totalPrice: ['', Validators.required],
-      paymentDate: [new Date(Date.now()), Validators.required],
+      paymentDate: [new Date(Date.now()), Validators.required],      
     });
   }
 
