@@ -5,9 +5,10 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from 'src/app/services/payment.service';
+import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
   selector: 'app-payment',
@@ -20,42 +21,56 @@ export class PaymentComponent implements OnInit {
   @Input() carrentalform: FormGroup;
   @Input() pricex: number;
   @Input() carIdx: number;
-  @Input() customerIdx: number;  
+  @Input() customerIdx: number;
 
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private paymentService: PaymentService,
-  ) {
+    private rentalService: RentalService,
+  
+  ) {}
 
-  }
-
-  ngOnInit(): void {   
+  ngOnInit(): void {
     this.createPaymentCarForm();
   }
 
   createPaymentCarForm() {
-    
     this.paymentCarForm = this.formBuilder.group({
-      carId:['',Validators.required],
-      customerId: ['',Validators.required],
+      carId: ['', Validators.required],
+      customerId: ['', Validators.required],
       cartName: ['', Validators.required],
       cartNumber: ['', Validators.required],
       cartDate: ['', Validators.required],
-      totalPrice: ['',Validators.required],
-      paymentDate:[new Date(Date.now()),Validators.required]
+      totalPrice: ['', Validators.required],
+      paymentDate: [new Date(Date.now()), Validators.required],
     });
   }
 
   payment() {
-    
-    this.paymentCarForm.patchValue({carId:this.carIdx,customerId:this.customerIdx,totalPrice:this.pricex})        
+    this.paymentCarForm.patchValue({
+      carId: this.carIdx,
+      customerId: this.customerIdx,
+      totalPrice: this.pricex,
+    });
     if (this.paymentCarForm.valid) {
       let paymentModel = Object.assign({}, this.paymentCarForm.value);
       this.paymentService.paymentAdd(paymentModel).subscribe(
         (response) => {
-          this.toastrService.success('Ödeme Başarılı');
-          console.log(this.carrentalform.value)
+
+          if(response.success){
+              let rentalModel = Object.assign({},this.carrentalform.value)
+              this.rentalService.carRentAdd(rentalModel).subscribe(res=>{
+                this.toastrService.success('Ödeme Başarılı');
+                function refreshx() {
+                  window.location.assign("http://localhost:4200/cars");
+                }
+                window.setInterval(refreshx, 1000);
+
+              },resError=>{
+                this.toastrService.error('İşlem Başarısız..!!');
+              })
+          }
         },
         (responseError) => {
           this.toastrService.error('İşlem Başarısız');
