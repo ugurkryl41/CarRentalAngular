@@ -8,7 +8,10 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDto } from 'src/app/models/car-dto';
+import { Rental } from 'src/app/models/rental';
+import { RentCar } from 'src/app/models/rentcar';
 import { CarService } from 'src/app/services/car.service';
+import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
   selector: 'app-car-rent',
@@ -16,14 +19,13 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./car-rent.component.css'],
 })
 export class CarRentComponent implements OnInit {
-
-  paymentSide:boolean = false;
-  rentalSide:boolean = true;
+  paymentSide: boolean = false;
+  rentalSide: boolean = true;
 
   rentalCarForm: FormGroup;
 
   totalfiyat: number;
-  rentCarId: number;  
+  rentCarId: number;
   rentcarCustomerId: number = 2002;
 
   rentcar: CarDto;
@@ -33,6 +35,7 @@ export class CarRentComponent implements OnInit {
     private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
     private carService: CarService,
+    private rentalService: RentalService
   ) {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carid']) {
@@ -48,7 +51,7 @@ export class CarRentComponent implements OnInit {
   getCarDto(carid: number) {
     this.carService.getCarDetailsByCarId(carid).subscribe((response) => {
       this.rentcar = response.data;
-      this.rentCarId = response.data.id
+      this.rentCarId = response.data.id;
     });
   }
 
@@ -62,32 +65,45 @@ export class CarRentComponent implements OnInit {
   }
 
   createRent() {
-    this.rentalCarForm.patchValue({carId:this.rentCarId,customerId:this.rentcarCustomerId})
-    if (!this.rentalCarForm.valid) {
-      this.toastrService.warning('Tarih seçiniz');
-    } else {
-      if (
-        this.rentalCarForm.controls['rentDate'].value >=
-          new Date(Date.now()).toISOString() &&
-        this.rentalCarForm.controls['returnDate'].value >
-          this.rentalCarForm.controls['rentDate'].value
-      ) {
-        let rent = new Date(
-          this.rentalCarForm.controls['rentDate'].value
-        ).getTime();
-        let returnx = new Date(
-          this.rentalCarForm.controls['returnDate'].value
-        ).getTime();
-        this.totalfiyat =
-          (Math.abs(rent - returnx) / (1000 * 60 * 60 * 24)) *
-          this.rentcar.dailyPrice;
+    this.rentalCarForm.patchValue({
+      carId: 3004,
+      customerId: 2002,
+    });
+    
+    let datacheckModel = Object.assign({},this.rentalCarForm.value)
+    this.rentalService.rentalDateCheck(datacheckModel).subscribe(response => {
+      if(response.success){
+        if (!this.rentalCarForm.valid) {
+          this.toastrService.warning('Tarih seçiniz');
+        } else {
+          if (
+            this.rentalCarForm.controls['rentDate'].value >=
+              new Date(Date.now()).toISOString() &&
+            this.rentalCarForm.controls['returnDate'].value >
+              this.rentalCarForm.controls['rentDate'].value
+          ) {
+            let rent = new Date(
+              this.rentalCarForm.controls['rentDate'].value
+            ).getTime();
+            let returnx = new Date(
+              this.rentalCarForm.controls['returnDate'].value
+            ).getTime();
+            this.totalfiyat =
+              (Math.abs(rent - returnx) / (1000 * 60 * 60 * 24)) *
+              this.rentcar.dailyPrice;
+    
+            this.paymentSide = true;
+            this.rentalSide = false;
+          } else {
+            this.toastrService.warning('Tarihleri Değiştiriniz');
+          }
+        }
+      }      
+    },responseError=>{
+      this.toastrService.warning('Kiralama tarihini Değiştiriniz');
+    })
 
-        this.paymentSide = true;
-        this.rentalSide = false;
+    
 
-      } else {
-        this.toastrService.warning('Tarihleri Değiştiriniz');
-      }
-    }
   }
 }
