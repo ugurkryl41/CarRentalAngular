@@ -23,7 +23,8 @@ import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
-import { CarRentComponent } from './components/car-rent/car-rent.component'
+import { CarRentComponent } from './components/car-rent/car-rent.component';
+import { PaymentComponent } from './components/payment/payment.component'
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CarRentComponent } from './components/car-rent/car-rent.component'
     CarAddComponent,
     CarImageAddComponent,
     CarRentComponent,
+    PaymentComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule,
   FormsModule, ToastrModule.forRoot({positionClass:"toast-bottom-right"}),ReactiveFormsModule,

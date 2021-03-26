@@ -1,6 +1,6 @@
 <div class="content" style="padding-top: 1%;">
-    <div class="col-md-12" *ngIf="rentboard">
-        <div class="card">
+    <div class="col-md-12" *ngIf="rentalSide">
+        <div class="card" >
             <div class="card-header">
                 <h5 class="title"> Araba Kirala</h5>
             </div>
@@ -31,63 +31,14 @@
                 </form>
             </div>
             <div class="card-footer">
-                <button class="btn btn-fill btn-primary" (click)="createRent()">Kirala</button>
+                <button class="btn btn-fill btn-primary" (click)="createRent()">Kirala </button>
             </div>
         </div>
+    </div>  
+    <div class="col-md-12">
+         <app-payment *ngIf="paymentSide" [pricex]="totalfiyat"
+         [carIdx]="rentCarId" [customerIdx]="rentcarCustomerId" [carrentalform]="rentalCarForm"
+         ></app-payment>
     </div>
-    <div class="row">
-        <br>
-    </div>
-    <div class="col-md-12" style="border: cadetblue 1px solid;" *ngIf="paymentboard">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="title"> Ödeme Ekranı</h5>
-            </div>
-            <div class="card-body">
-                <form [formGroup]="paymentCarForm">
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label class="form-control">Seçilen Araba ID : {{rentCarId}}</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label class="form-control">Müşteri ID : {{rentcarCustomerId}}</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cartName">Kart Üzerindeki İsmi Giriniz</label>
-                        <div class="form-group">
-                            <input type="text" id="cartName" formControlName="cartName" class="form-control"
-                                placeholder="Uğur" />
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cartNumber">Kart Numarasını Giriniz</label>
-                        <div class="form-group">
-                            <input type="text" id="cartNumber" formControlName="cartNumber" class="form-control"
-                                placeholder="5000-4520-5596-1234" />
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cartDate">Kartın Son Kullanma Tarihini Giriniz</label>
-                        <div class="form-group">
-                            <input type="text" id="cartDate" formControlName="cartDate" class="form-control"
-                                placeholder="10/24" />
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="totalPrice">Toplam Fiyat</label>
-                        <div class="form-group">
-                            <input type="text" id="totalPrice" formControlName="totalPrice" class="form-control"
-                                placeholder="{{totalfiyat}} YTL" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-fill btn-primary" (click)="payment()">Öde</button>
-            </div>
-        </div>
-    </div>
+   
 </div>

@@ -8,9 +8,8 @@ import { CarRentComponent } from './components/car-rent/car-rent.component';
 import { CarComponent } from './components/car/car.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { PaymentComponent } from './components/payment/payment.component';
 import { RentalComponent } from './components/rental/rental.component';
-
-
 
 const routes: Routes = [
   {
@@ -48,7 +47,7 @@ const routes: Routes = [
   },
   {
     path:"car-rent/:carid",  component:CarRentComponent
-  },
+  },  
 ];
 
 @NgModule({
