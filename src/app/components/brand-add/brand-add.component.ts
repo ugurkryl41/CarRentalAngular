@@ -51,11 +51,18 @@ export class BrandAddComponent implements OnInit {
           this.toastrService.success('Ekleme Başarılı', data.message);
         },
         (dataError) => {
-          this.toastrService.error('İşlem Başarısız', dataError);
+          if (dataError.error.ValidationErrors.length > 0) {
+            for (let i = 0; i < dataError.error.ValidationErrors.length; i++) {
+              this.toastrService.error(
+                dataError.error.ValidationErrors[i].ErrorMessage,
+                'İşlem Başarısız..!!'
+              );
+            }
+          }
         }
       );
     } else {
-      this.toastrService.error('Formu doldurnuz');
+      this.toastrService.warning('Formu doldurnuz');
     }
 
     function refreshx() {
@@ -68,19 +75,29 @@ export class BrandAddComponent implements OnInit {
     this.brandxx = brandsss;
   }
 
-  handleKeyup(event: any): void{ 
+  handleKeyup(event: any): void {
     this.brandxx.brandName = event.target.value;
     console.log(event);
-}
+  }
 
   updateBrand() {
-    
     this.brandService.brandUpdate(this.brandxx).subscribe(
       (response) => {
         this.toastrService.success(this.brandxx.brandName, 'Güncellendi');
       },
       (responseError) => {
-        this.toastrService.error('Güncelleme Başarısız');
+        if (responseError.error.ValidationErrors.length > 0) {
+          for (
+            let i = 0;
+            i < responseError.error.ValidationErrors.length;
+            i++
+          ) {
+            this.toastrService.error(
+              responseError.error.ValidationErrors[i].ErrorMessage,
+              'Güncelleme Başarısız'
+            );
+          }
+        }
       }
     );
 
@@ -89,5 +106,4 @@ export class BrandAddComponent implements OnInit {
     }
     window.setInterval(refreshx, 1000);
   }
-  
 }

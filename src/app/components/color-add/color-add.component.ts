@@ -45,11 +45,22 @@ export class ColorAddComponent implements OnInit {
           this.toastrService.success('Ekleme Başarılı', data.message);
         },
         (dataError) => {
-          this.toastrService.error('İşlem Başarısız', dataError);
+          if (dataError.error.ValidationErrors.length > 0) {
+            for (
+              let i = 0;
+              i < dataError.error.ValidationErrors.length;
+              i++
+            ) {
+              this.toastrService.error(
+                dataError.error.ValidationErrors[i].ErrorMessage,
+                'İşlem Başarısız..!!'
+              );
+            }
+          }
         }
       );
     } else {
-      this.toastrService.error('Formu doldurunuz');
+      this.toastrService.warning('Formu doldurunuz');
     }
 
     function refreshx() {
@@ -74,7 +85,18 @@ export class ColorAddComponent implements OnInit {
         this.toastrService.success(this.colorxx.colorName, 'Güncellendi');
       },
       (responseError) => {
-        this.toastrService.error('Güncelleme Başarısız');
+        if (responseError.error.ValidationErrors.length > 0) {
+          for (
+            let i = 0;
+            i < responseError.error.ValidationErrors.length;
+            i++
+          ) {
+            this.toastrService.error(
+              responseError.error.ValidationErrors[i].ErrorMessage,
+              'İşlem Başarısız..!!'
+            );
+          }
+        }
       }
     );
 

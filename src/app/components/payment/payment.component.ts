@@ -27,8 +27,7 @@ export class PaymentComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private paymentService: PaymentService,
-    private rentalService: RentalService,
-  
+    private rentalService: RentalService
   ) {}
 
   ngOnInit(): void {
@@ -42,9 +41,9 @@ export class PaymentComponent implements OnInit {
       cartName: ['', Validators.required],
       cartNumber: ['', Validators.required],
       cartDate: ['', Validators.required],
-      cartCvv:['',Validators.maxLength(3)],
+      cartCvv: ['', Validators.maxLength(3)],
       totalPrice: ['', Validators.required],
-      paymentDate: [new Date(Date.now()), Validators.required],      
+      paymentDate: [new Date(Date.now()), Validators.required],
     });
   }
 
@@ -58,23 +57,46 @@ export class PaymentComponent implements OnInit {
       let paymentModel = Object.assign({}, this.paymentCarForm.value);
       this.paymentService.paymentAdd(paymentModel).subscribe(
         (response) => {
-
-          if(response.success){
-              let rentalModel = Object.assign({},this.carrentalform.value)
-              this.rentalService.carRentAdd(rentalModel).subscribe(res=>{
+          if (response.success) {
+            let rentalModel = Object.assign({}, this.carrentalform.value);
+            this.rentalService.carRentAdd(rentalModel).subscribe(
+              (res) => {
                 this.toastrService.success('Ödeme Başarılı');
                 function refreshx() {
-                  window.location.assign("http://localhost:4200/cars");
+                  window.location.assign('http://localhost:4200/cars');
                 }
                 window.setInterval(refreshx, 1000);
-
-              },resError=>{
-                this.toastrService.error('İşlem Başarısız..!!');
-              })
+              },
+              (resError) => {
+                if (resError.error.ValidationErrors.length > 0) {
+                  for (
+                    let i = 0;
+                    i < resError.error.ValidationErrors.length;
+                    i++
+                  ) {
+                    this.toastrService.error(
+                      resError.error.ValidationErrors[i].ErrorMessage,
+                      'İşlem Başarısız..!!'
+                    );
+                  }
+                }
+              }
+            );
           }
         },
         (responseError) => {
-          this.toastrService.error('İşlem Başarısız');
+          if (responseError.error.ValidationErrors.length > 0) {
+            for (
+              let i = 0;
+              i < responseError.error.ValidationErrors.length;
+              i++
+            ) {
+              this.toastrService.error(
+                responseError.error.ValidationErrors[i].ErrorMessage,
+                'İşlem Başarısız..!!'
+              );
+            }
+          }
         }
       );
     } else {

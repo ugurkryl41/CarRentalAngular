@@ -81,11 +81,18 @@ export class CarAddComponent implements OnInit {
           this.toastrService.success('Ekleme Başarılı', data.message);
         },
         (dataError) => {
-          this.toastrService.error('İşlem Başarısız', dataError);
+          if (dataError.error.ValidationErrors.length > 0) {
+            for (let i = 0; i < dataError.error.ValidationErrors.length; i++) {
+              this.toastrService.error(
+                dataError.error.ValidationErrors[i].ErrorMessage,
+                'İşlem Başarısız..!!'
+              );
+            }
+          }
         }
       );
     } else {
-      this.toastrService.error('Formu doldurnuz');
+      this.toastrService.warning('Formu doldurnuz');
     }
 
     function refreshx() {
@@ -110,21 +117,31 @@ export class CarAddComponent implements OnInit {
   }
 
   updateCar() {
-    
-    this.carUpdateForm.patchValue({id:this.carId})
-       
-    if (this.carUpdateForm.valid) {      
+    this.carUpdateForm.patchValue({ id: this.carId });
+
+    if (this.carUpdateForm.valid) {
       let carUpdateModel = Object.assign({}, this.carUpdateForm.value);
       this.carService.carUpdate(carUpdateModel).subscribe(
         (data) => {
           this.toastrService.success('Ekleme Başarılı', data.message);
         },
         (dataError) => {
-          this.toastrService.error('İşlem Başarısız', dataError);
+          if (dataError.error.ValidationErrors.length > 0) {
+            for (
+              let i = 0;
+              i < dataError.error.ValidationErrors.length;
+              i++
+            ) {
+              this.toastrService.error(
+                dataError.error.ValidationErrors[i].ErrorMessage,
+                'İşlem Başarısız..!!'
+              );
+            }
+          }
         }
       );
     } else {
-      this.toastrService.error('Formu doldurnuz');
+      this.toastrService.warning('Formu doldurnuz');
     }
 
     function refreshx() {

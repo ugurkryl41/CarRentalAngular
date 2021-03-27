@@ -47,12 +47,23 @@ export class CarImageAddComponent implements OnInit {
       this.carImageService.carImageAdd(carImageModel,this.selectedFile).subscribe(data=>{
         this.toastrService.success("Ekleme Başarılı",data.message);
       },dataError=>{
-        this.toastrService.error("İşlem Başarısız",dataError)
+        if (dataError.error.ValidationErrors.length > 0) {
+          for (
+            let i = 0;
+            i < dataError.error.ValidationErrors.length;
+            i++
+          ) {
+            this.toastrService.error(
+              dataError.error.ValidationErrors[i].ErrorMessage,
+              'İşlem Başarısız..!!'
+            );
+          }
+        }
       })
-      console.log(carImageModel);   
+        
     }
     else{
-      this.toastrService.error("Formu doldurnuz");
+      this.toastrService.warning("Formu doldurnuz");
     }  
 
     function refreshx() {

@@ -69,42 +69,42 @@ export class CarRentComponent implements OnInit {
       carId: this.rentCarId,
       customerId: this.rentcarCustomerId,
     });
-    
-    let datacheckModel = Object.assign({},this.rentalCarForm.value)
-    
-    this.rentalService.rentalDateCheck(datacheckModel).subscribe(response => {
-      if(response.success){
-        if (!this.rentalCarForm.valid) {
-          this.toastrService.warning('Tarih seçiniz');
-        } else {
-          if (
-            this.rentalCarForm.controls['rentDate'].value >=
-              new Date(Date.now()).toISOString() &&
-            this.rentalCarForm.controls['returnDate'].value >
-              this.rentalCarForm.controls['rentDate'].value
-          ) {
-            let rent = new Date(
-              this.rentalCarForm.controls['rentDate'].value
-            ).getTime();
-            let returnx = new Date(
-              this.rentalCarForm.controls['returnDate'].value
-            ).getTime();
-            this.totalfiyat =
-              (Math.abs(rent - returnx) / (1000 * 60 * 60 * 24)) *
-              this.rentcar.dailyPrice;
-    
-            this.paymentSide = true;
-            this.rentalSide = false;
+
+    let datacheckModel = Object.assign({}, this.rentalCarForm.value);
+
+    this.rentalService.rentalDateCheck(datacheckModel).subscribe(
+      (response) => {
+        if (response.success) {
+          if (!this.rentalCarForm.valid) {
+            this.toastrService.warning('Tarih seçiniz');
           } else {
-            this.toastrService.warning('Tarihleri Değiştiriniz');
+            if (
+              this.rentalCarForm.controls['rentDate'].value >=
+                new Date(Date.now()).toISOString() &&
+              this.rentalCarForm.controls['returnDate'].value >
+                this.rentalCarForm.controls['rentDate'].value
+            ) {
+              let rent = new Date(
+                this.rentalCarForm.controls['rentDate'].value
+              ).getTime();
+              let returnx = new Date(
+                this.rentalCarForm.controls['returnDate'].value
+              ).getTime();
+              this.totalfiyat =
+                (Math.abs(rent - returnx) / (1000 * 60 * 60 * 24)) *
+                this.rentcar.dailyPrice;
+
+              this.paymentSide = true;
+              this.rentalSide = false;
+            } else {
+              this.toastrService.warning('Tarihleri Değiştiriniz');
+            }
           }
         }
-      }      
-    },responseError=>{
-      this.toastrService.warning('Kiralama tarihini Değiştiriniz');
-    })
-
-    
-
+      },
+      (responseError) => {
+        this.toastrService.warning('Seçilen Tarihler Arasında Araç Kiralık');
+      }
+    );
   }
 }
