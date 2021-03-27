@@ -10,7 +10,7 @@
       <div class="card-body">
         <form>
           <div class="mb-3">
-            <div class="btn-group" style="width:100%;">
+            <div class="btn-group" style="width:30%; margin-right: 2%;">
               <button type="button" data-bs-toggle="dropdown" class="form-select" aria-label="Default select example"
                 aria-expanded="false">
                 {{ brandText.brandName }}
@@ -21,25 +21,25 @@
                 </li>
               </ul>
             </div>
-          </div>
-          <div class="mb-3">
-            <div class="btn-group" style="width:100%;">
+            <div class="btn-group" style="width:30%; margin-right: 2%;">
               <button type="button" data-bs-toggle="dropdown" class="form-select" aria-label="Default select example"
                 aria-expanded="false">
                 {{ colorText.colorName }}
               </button>
-              <ul class="dropdown-menu" style="width:100%;">
+              <ul class="dropdown-menu" style="width:100%;" >
                 <li (click)="getValueColorClass(color)" *ngFor="let color of colors| slice:1; let i = index;">
                   <a class="dropdown-item">{{ color.colorName }}</a>
                 </li>
               </ul>
             </div>
+            <div class="btn-group" style="width:15%;">
+              <button class="btn btn-outline-secondary" (click)="filtrele()">Filtrele</button>              
+            </div>          
+            <div class="btn-group" style="width:18%; margin-left: 2%;">
+              <button class="btn btn-outline-secondary" (click)="allitem()"> Tümünü Göster</button>
+            </div>
           </div>
         </form>
-      </div>
-      <div class="d-grid gap-2" style="margin-bottom: 1%;">
-        <button class="btn btn-outline-secondary" (click)="filtrele()" >Filtrele</button>
-        <button class="btn btn-outline-secondary" (click)="allitem()" > Tümünü Göster</button>
       </div>
     </div>
   </div>
