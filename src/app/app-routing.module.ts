@@ -8,8 +8,10 @@ import { CarRentComponent } from './components/car-rent/car-rent.component';
 import { CarComponent } from './components/car/car.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {
@@ -46,7 +48,11 @@ const routes: Routes = [
     path:"car-image-add",  component:CarImageAddComponent
   },
   {
-    path:"car-rent/:carid",  component:CarRentComponent
+    path:"car-rent/:carid",  component:CarRentComponent, 
+    canActivate:[LoginGuard],
+  },  
+  {
+    path:"login",  component:LoginComponent
   },  
 ];
 
