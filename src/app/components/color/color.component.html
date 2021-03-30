@@ -1,23 +1,28 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>Color</th>
-    </tr>
-  </thead>
-  <tr>
-    <ul class="list-group">
-      <li class="list-group-item">        
-        <label for="colorFilter" class="form-label">Renk Ara</label>
-        <input type="email"  [(ngModel)]="colorFilter" class="form-control" id="colorFilter" placeholder="Örnek:Kırmızı">        
-      </li>
-      <li
-        routerLink="/cars/color/{{ color.id }}"
-        *ngFor="let color of colors | colorPipe:colorFilter"
-        (click)="setCurrentColor(color)"        
-        [class]="getCurrentColorClass(color)"        
-      >
-        {{ color.colorName | uppercase }}
-      </li>
-    </ul>
-  </tr>
-</table>
+
+<div class="container" style="margin-top: 1%;">
+  <div class="row">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            Renk
+          </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+          data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <input type="email"  [(ngModel)]="colorFilter" class="form-control" id="colorFilter" placeholder="Örnek:Kırmızı"> 
+            <select class="form-select" aria-label="Default select example" size="5">
+              <option routerLink="/cars/color/{{ color.id }}"
+              *ngFor="let color of colors | colorPipe:colorFilter"
+              (click)="setCurrentColor(color)"        
+              [class]="getCurrentColorClass(color)"  >  {{ color.colorName | uppercase }} </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

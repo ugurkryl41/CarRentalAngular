@@ -10,7 +10,7 @@
       <div class="card-body">
         <form>
           <div class="mb-3">
-            <div class="btn-group" style="width:30%; margin-right: 2%;">
+            <div class="btn-group" style="width:20%; margin-right: 2%;">
               <button type="button" data-bs-toggle="dropdown" class="form-select" aria-label="Default select example"
                 aria-expanded="false">
                 {{ brandText.brandName }}
@@ -21,22 +21,26 @@
                 </li>
               </ul>
             </div>
-            <div class="btn-group" style="width:30%; margin-right: 2%;">
+            <div class="btn-group" style="width:20%; margin-right: 2%;">
               <button type="button" data-bs-toggle="dropdown" class="form-select" aria-label="Default select example"
                 aria-expanded="false">
                 {{ colorText.colorName }}
               </button>
-              <ul class="dropdown-menu" style="width:100%;" >
+              <ul class="dropdown-menu" style="width:100%;">
                 <li (click)="getValueColorClass(color)" *ngFor="let color of colors| slice:1; let i = index;">
                   <a class="dropdown-item">{{ color.colorName }}</a>
                 </li>
               </ul>
             </div>
-            <div class="btn-group" style="width:15%;">
-              <button class="btn btn-outline-secondary" (click)="filtrele()">Filtrele</button>              
-            </div>          
-            <div class="btn-group" style="width:18%; margin-left: 2%;">
+            <div class="btn-group" style="width:15%; margin-left: 2%;">
+              <button class="btn btn-outline-secondary" (click)="filtrele()">Filtrele</button>
+            </div>
+            <div class="btn-group" style="width:15%; margin-left: 2%; margin-right: 2%; ">
               <button class="btn btn-outline-secondary" (click)="allitem()"> Tümünü Göster</button>
+            </div>
+            <div class="btn-group" style="width:15%;">              
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" 
+              data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"> Gelişmiş Arama</button>
             </div>
           </div>
         </form>
@@ -44,10 +48,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
       <div *ngFor="let car of cars" class="col">
         <div class="card">
-          <img [src]="carimagethum(car)" style="width: 300px; height: 200px" routerLink="/car-detail/{{ car.id }}"
+          <img [src]="carimagethum(car)" style="height: 200px;" routerLink="/car-detail/{{ car.id }}"
             class="img-fluid img-thumbnail" alt="..." />
           <div class="card-body">
             <h5 class="card-title">
@@ -73,6 +77,22 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Gelişmiş Arama Menüsü</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="row">
+      <app-brand></app-brand>
+    </div>
+    <div class="row">
+      <app-color></app-color>
     </div>
   </div>
 </div>

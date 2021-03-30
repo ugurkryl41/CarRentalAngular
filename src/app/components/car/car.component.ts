@@ -143,5 +143,6 @@ export class CarComponent implements OnInit {
     this.getCarsDto();
     this.brandText= { id: -1, brandName: 'Marka Seçiniz' };
     this.colorText= { id: -1, colorName: 'Renk Seçiniz' };
-  }
+  } 
+  
 }

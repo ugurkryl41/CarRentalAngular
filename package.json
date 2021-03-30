@@ -20,11 +20,12 @@
     "@angular/platform-browser-dynamic": "~11.2.5",
     "@angular/router": "~11.2.5",
     "angular-popper": "^2.0.1",
-    "bootstrap": "^5.0.0-beta2",
+    "bootstrap": "^5.0.0-beta3",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "ngx-toastr": "^13.2.1",
     "open-iconic": "^1.1.1",
+    "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
