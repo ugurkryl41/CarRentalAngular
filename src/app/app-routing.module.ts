@@ -11,6 +11,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RentalComponent } from './components/rental/rental.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -53,6 +54,9 @@ const routes: Routes = [
   },  
   {
     path:"login",  component:LoginComponent
+  }, 
+  {
+    path:"signup",  component:SignupComponent
   },  
 ];
 

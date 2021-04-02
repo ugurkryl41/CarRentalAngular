@@ -1,4 +1,4 @@
-<!-- <header class="p-3 bg-dark text-white">
+<header class="p-3 bg-dark text-white" *ngIf="!userToken">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -7,25 +7,20 @@
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a class="nav-link px-2 text-secondary" routerLink="/cars" >Anasayfa</a></li>
-        <li><a class="nav-link px-2 text-white">Araçlar</a></li>
+        <li><a class="nav-link px-2 text-white" routerLink="/cars" >Araçlar</a></li>
         <li><a class="nav-link px-2 text-white">Ofisler</a></li>
         <li><a class="nav-link px-2 text-white">Kampanyalar</a></li>
-        <li><a class="nav-link px-2 text-white">Araç Filo</a></li>
-      </ul>
-
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <input type="search" class="form-control form-control-dark" placeholder="Search...">
-      </form>
+      </ul>     
 
       <div class="text-end">
-        <button type="button" class="btn btn-outline-light me-2">Login</button>
-        <button type="button" class="btn btn-warning">Sign-up</button>
+        <button type="button" class="btn btn-outline-light me-2" routerLink="/login" >Login</button>
+        <button type="button" class="btn btn-warning" routerLink="/signup">Sign-up</button>
       </div>
     </div>
   </div>
 </header>
 
-<header class="p-3 mb-3 border-bottom" *ngIf="userlogin">
+<header class="p-3 bg-dark text-white" *ngIf="userToken">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -34,14 +29,14 @@
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Inventory</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Customers</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Products</a></li>
       </ul>
 
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <input type="search" class="form-control" placeholder="Search...">
-      </form>
+      <div class="nav col-2">
+        <label>Hoşgeldin XXX YY </label>
+      </div>
 
       <div class="dropdown text-end">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,39 +47,13 @@
           <li><a class="dropdown-item" href="#">Settings</a></li>
           <li><a class="dropdown-item" href="#">Profile</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
+          <li><a class="dropdown-item" (click)="userlogout()">Sign out</a></li>
         </ul>
       </div>
     </div>
   </div>
-</header> -->
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Logo</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/cars" aria-current="page" href="#">Anasayfa</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/customers" aria-current="page" href="#">Müşteriler</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/rentals" aria-current="page" href="#">Kiralama Detayı</a>
-          </li>
-          <app-edit-panel></app-edit-panel>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Ara</button>
-        </form>
-      </div>
-    </div>
-  </nav>
+</header> 
+<!-- 
+<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+  <input type="search" class="form-control form-control-dark" placeholder="Search...">
+</form> -->

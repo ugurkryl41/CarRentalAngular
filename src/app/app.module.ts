@@ -27,6 +27,8 @@ import { CarRentComponent } from './components/car-rent/car-rent.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { SignupComponent } from './components/signup/signup.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     CarRentComponent,
     PaymentComponent,
     LoginComponent,
+    SignupComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

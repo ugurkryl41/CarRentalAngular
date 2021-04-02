@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navi',
@@ -7,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NaviComponent implements OnInit {
 
- 
-  constructor() { }
+  userToken:boolean;
+
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
+    
+    this.tokenCheck();
+
+  }
+
+  tokenCheck(){
+    if(this.authService.isAuthenticated())
+    {
+      this.userToken = this.authService.isAuthenticated();
+    }
+  }
+  
+  userlogout(){
+    localStorage.clear();
+    window.location.assign('http://localhost:4200/cars');
   }
 
 }
