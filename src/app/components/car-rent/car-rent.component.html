@@ -13,7 +13,7 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-group">
-                            <label class="form-control">Müşteri ID : {{rentcarCustomerId}}</label>
+                            <label class="form-control">Müşteri Adı: {{authService.userName}}</label>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -37,7 +37,7 @@
     </div>  
     <div class="col-md-12">
          <app-payment *ngIf="paymentSide" [pricex]="totalfiyat"
-         [carIdx]="rentCarId" [customerIdx]="rentcarCustomerId" [carrentalform]="rentalCarForm"
+         [carIdx]="rentCarId" [carrentalform]="rentalCarForm"
          ></app-payment>
     </div>
    

@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CarDto } from 'src/app/models/car-dto';
 import { Rental } from 'src/app/models/rental';
 import { RentCar } from 'src/app/models/rentcar';
+import { AuthService } from 'src/app/services/auth.service';
 import { CarService } from 'src/app/services/car.service';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -26,7 +27,6 @@ export class CarRentComponent implements OnInit {
 
   totalfiyat: number;
   rentCarId: number;
-  rentcarCustomerId: number = 2002;
 
   rentcar: CarDto;
 
@@ -35,17 +35,18 @@ export class CarRentComponent implements OnInit {
     private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
     private carService: CarService,
-    private rentalService: RentalService
+    private rentalService: RentalService,
+    public authService:AuthService
   ) {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carid']) {
         this.getCarDto(params['carid']);
       }
-    });
+    }); 
   }
 
   ngOnInit(): void {
-    this.createRentalCarForm();
+    this.createRentalCarForm();   
   }
 
   getCarDto(carid: number) {
@@ -65,9 +66,10 @@ export class CarRentComponent implements OnInit {
   }
 
   createRent() {
+   
     this.rentalCarForm.patchValue({
       carId: this.rentCarId,
-      customerId: this.rentcarCustomerId,
+      customerId: parseInt(this.authService.customerId.toString()),
     });
 
     let datacheckModel = Object.assign({}, this.rentalCarForm.value);

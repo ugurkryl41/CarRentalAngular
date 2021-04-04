@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-navi',
@@ -10,7 +12,7 @@ export class NaviComponent implements OnInit {
 
   userToken:boolean;
 
-  constructor(private authService:AuthService) { }
+  constructor(public authService:AuthService,private localStorageService: LocalStorageService,private customerService:CustomerService) { }
 
   ngOnInit(): void {
     
@@ -22,12 +24,13 @@ export class NaviComponent implements OnInit {
     if(this.authService.isAuthenticated())
     {
       this.userToken = this.authService.isAuthenticated();
+      this.authService.userDetailFromToken(); 
     }
   }
   
   userlogout(){
-    localStorage.clear();
-    window.location.assign('http://localhost:4200/cars');
+    this.localStorageService.remove("token")    
+    window.location.assign('http://localhost:4200/cars');       
   }
 
 }

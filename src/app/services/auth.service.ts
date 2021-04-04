@@ -3,26 +3,53 @@ import { Injectable } from '@angular/core';
 import { LoginModel } from '../models/loginModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/tokenModel';
+import { LocalStorageService } from './local-storage.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { CustomerService } from './customer.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class AuthService {
+  private apiUrl = 'https://localhost:44399/api/';
 
-  private apiUrl="https://localhost:44399/api/";
-  constructor(private httpClient:HttpClient) { }
+  userName:string;
+  userId:number; 
+  customerId:number;
 
-  login(login:LoginModel){
-    let newPath= this.apiUrl+"auth/login";
-    return this.httpClient.post<SingleResponseModel<TokenModel>>(newPath,login)
+  constructor(
+    private httpClient: HttpClient,
+    private localStorageService: LocalStorageService, 
+    private customerService:CustomerService     
+  ) {
+
+    
   }
 
-  isAuthenticated(){
-    if(localStorage.getItem("token")){
-      return true;
-    }
-    else{
-      return false;
-    }
+  login(login: LoginModel) {
+    let newPath = this.apiUrl + 'auth/login';
+    return this.httpClient.post<SingleResponseModel<TokenModel>>(
+      newPath,
+      login
+    );
+  }
+
+  async userDetailFromToken() {
+    const helper = new JwtHelperService();
+    let token: any = this.localStorageService.get('token');
+    const decodedToken = helper.decodeToken(token);       
+    let name = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+    this.userName = name;
+    this.userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];  
+    await this.customerService.getByUserId(this.userId).subscribe(response=>{
+      this.customerId = response.data.id 
+    })
+        
+  }
+ 
+  isAuthenticated() {
+    return this.localStorageService.checkuserlogOff('token');
   }
 }

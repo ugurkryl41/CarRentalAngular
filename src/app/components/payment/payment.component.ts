@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -21,13 +22,13 @@ export class PaymentComponent implements OnInit {
   @Input() carrentalform: FormGroup;
   @Input() pricex: number;
   @Input() carIdx: number;
-  @Input() customerIdx: number;
 
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private paymentService: PaymentService,
-    private rentalService: RentalService
+    private rentalService: RentalService,
+    public authService:AuthService
   ) {}
 
   ngOnInit(): void {
@@ -50,7 +51,7 @@ export class PaymentComponent implements OnInit {
   payment() {
     this.paymentCarForm.patchValue({
       carId: this.carIdx,
-      customerId: this.customerIdx,
+      customerId: parseInt(this.authService.customerId.toString()),
       totalPrice: this.pricex,
     });
     if (this.paymentCarForm.valid) {
