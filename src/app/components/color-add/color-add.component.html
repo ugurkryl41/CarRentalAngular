@@ -1,49 +1,54 @@
 <div class="container">
-    <div class="row">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="title"> Renk Ekle</h5>
-            </div>
-            <div class="card-body">
-                <form [formGroup]="colorAddForm">
-                    <div class="mb-3">
-                        <label for="colorName">Renk Adı</label>
-                        <div class="form-group">
-                            <input type="text" id="colorName" formControlName="colorName" class="form-control"
-                                placeholder="Renk adı" />
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title"> Renk Ekle</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="colorAddForm">
+                        <div class="mb-3">
+                            <label for="colorName">Renk Adı</label>
+                            <div class="form-group">
+                                <input type="text" id="colorName" formControlName="colorName" class="form-control"
+                                    placeholder="Renk adı" />
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>                
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th> Id </th>
-                    <th> Renk</th>
-                    <th> Ayarlar </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let color of colors">
-                    <th scope="row">-</th>
-                    <th> {{color.id}} </th>
-                    <th> {{color.colorName}} </th>
-                    <th>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" (click)="getColor(color)">
-                            Düzenle
-                        </button>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row justify-content-md-center" style="margin-top: 2%;">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th> Id </th>
+                        <th> Renk</th>
+                        <th> Ayarlar </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let color of colors">
+                        <th scope="row">-</th>
+                        <th> {{color.id}} </th>
+                        <th> {{color.colorName}} </th>
+                        <th>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" (click)="getColor(color)">
+                                Düzenle
+                            </button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 
@@ -60,15 +65,16 @@
                     <div class="mb-3">
                         <label>Renk Adı</label>
                         <div class="form-group">
-                            <input type="text" class="form-control"
-                                [value]="colorxx.colorName" (keyup)="handleKeyup($event)"/>
+                            <input type="text" class="form-control" [value]="colorxx.colorName"
+                                (keyup)="handleKeyup($event)" />
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateColor()">Kaydet</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="updateColor()">Kaydet</button>
             </div>
         </div>
     </div>

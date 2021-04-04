@@ -1,30 +1,32 @@
 <div class="container" style="padding-top: 1%;">
-  <div class="row">
-    <table class="table table-success table-striped">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Marka</th>
-          <th scope="col">Color</th>
-          <th scope="col">Ad</th>
-          <th scope="col">Soyad</th>
-          <th scope="col">Şirket</th>
-          <th scope="col">Kiralama Tarihi</th>
-          <th scope="col">Dönüş Tarihi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let rental of rentals" [class]="returnDateCheck(rental)">
-          <td scope="row"> - </td>          
-          <td scope="row">{{ rental.brandName }}</td>
-          <td scope="row">{{ rental.colorName }}</td>
-          <td scope="row">{{ rental.firstName }}</td>
-          <td scope="row">{{ rental.lastName }}</td>
-          <td scope="row">{{ rental.companyName }}</td>
-          <td scope="row">{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
-          <td scope="row">{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row justify-content-md-center">
+    <div class="col-md-9">
+      <table class="table table-warning table-striped" style="background-color: gold;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Marka</th>
+            <th scope="col">Color</th>
+            <th scope="col">Ad</th>
+            <th scope="col">Soyad</th>
+            <th scope="col">Şirket</th>
+            <th scope="col">Kiralama Tarihi</th>
+            <th scope="col">Dönüş Tarihi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rental of rentals" [class]="returnDateCheck(rental)">
+            <td scope="row"> - </td>
+            <td scope="row">{{ rental.brandName }}</td>
+            <td scope="row">{{ rental.colorName }}</td>
+            <td scope="row">{{ rental.firstName }}</td>
+            <td scope="row">{{ rental.lastName }}</td>
+            <td scope="row">{{ rental.companyName }}</td>
+            <td scope="row">{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
+            <td scope="row">{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
