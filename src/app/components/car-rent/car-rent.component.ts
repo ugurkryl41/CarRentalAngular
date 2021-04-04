@@ -8,8 +8,6 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDto } from 'src/app/models/car-dto';
-import { Rental } from 'src/app/models/rental';
-import { RentCar } from 'src/app/models/rentcar';
 import { AuthService } from 'src/app/services/auth.service';
 import { CarService } from 'src/app/services/car.service';
 import { RentalService } from 'src/app/services/rental.service';
@@ -27,7 +25,6 @@ export class CarRentComponent implements OnInit {
 
   totalfiyat: number;
   rentCarId: number;
-
   rentcar: CarDto;
 
   constructor(

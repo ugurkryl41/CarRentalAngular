@@ -2,7 +2,7 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 <div class="container">
-  <div class="row" style="padding-top: 1%;">     
+  <div class="row" style="margin-top: 1%;" >     
         <form>
           <div class="mb-3">
             <div class="btn-group" style="width:20%; margin-right: 2%;">
@@ -27,7 +27,7 @@
                 </li>
               </ul>
             </div>
-            <div class="btn-group" style="width:15%; margin-left: 2%;">
+            <div class="btn-group" style="width:15%; margin-left: 5%;">
               <button class="btn btn-outline-secondary" (click)="filtrele()">Filtrele</button>
             </div>
             <div class="btn-group" style="width:15%; margin-left: 2%; margin-right: 2%; ">
@@ -40,7 +40,7 @@
           </div>
         </form>      
   </div>
-  <div class="row">
+  <div class="row" style="margin-top: -2%;">
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div *ngFor="let car of cars" class="col">
         <div class="card">
@@ -73,7 +73,6 @@
     </div>
   </div>
 </div>
-
 
 
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">

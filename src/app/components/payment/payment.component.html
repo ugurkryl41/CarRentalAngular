@@ -1,59 +1,63 @@
 <div class="content" style="padding-top: 1%;">
-    <div class="col-md-12" style="border: cadetblue 1px solid;">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="title"> Ödeme Ekranı</h5>
-            </div>
-            <div class="card-body">
-                <form [formGroup]="paymentCarForm">
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label class="form-control">Seçilen Araba ID : {{carIdx}}</label>
+    <div class="row justify-content-md-center">
+        <div class="col-md-6" style="border: cadetblue 1px solid;">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="title"> Ödeme Ekranı</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="paymentCarForm">
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label class="form-control">Seçilen Araba ID : {{carIdx}}</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label class="form-control">Müşteri Adı : {{authService.userName}}</label>
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label class="form-control">Müşteri Adı : {{authService.userName}}</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="form-group">
-                            <label class="form-control">Toplam Tutar : {{ pricex | currency: "₺"}}</label>
+                        <div class="mb-3">
+                            <div class="form-group">
+                                <label class="form-control">Toplam Tutar : {{ pricex | currency: "₺"}}</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cartName">Kart Üzerindeki İsmi Giriniz</label>
-                        <div class="form-group">
-                            <input type="text" id="cartName" formControlName="cartName" class="form-control"
-                                placeholder="Uğur" />
+                        <div class="mb-3">
+                            <label for="cartName">Kart Üzerindeki İsmi Giriniz</label>
+                            <div class="form-group">
+                                <input type="text" id="cartName" formControlName="cartName" class="form-control"
+                                    placeholder="Uğur" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cartNumber">Kart Numarasını Giriniz</label>
-                        <div class="form-group">
-                            <input type="text" id="cartNumber" formControlName="cartNumber" class="form-control"
-                                placeholder="5000-4520-5596-1234" />
+                        <div class="mb-3">
+                            <label for="cartNumber">Kart Numarasını Giriniz</label>
+                            <div class="form-group">
+                                <input type="text" id="cartNumber" formControlName="cartNumber" class="form-control"
+                                    placeholder="5000-4520-5596-1234" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cartDate">Kartın Son Kullanma Tarihini Giriniz</label>
-                        <div class="form-group">
-                            <input type="text" id="cartDate" formControlName="cartDate" class="form-control"
-                                placeholder="10/24" />
+                        <div class="mb-3">
+                            <label for="cartDate">Kartın Son Kullanma Tarihini Giriniz</label>
+                            <div class="form-group">
+                                <input type="text" id="cartDate" formControlName="cartDate" class="form-control"
+                                    placeholder="10/24" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="cartCvv">CVV Giriniz</label>
-                        <div class="form-group">
-                            <input type="number" id="cartCvv" formControlName="cartCvv" class="form-control"
-                                placeholder="123" />
+                        <div class="mb-3">
+                            <label for="cartCvv">CVV Giriniz</label>
+                            <div class="form-group">
+                                <input type="number" id="cartCvv" formControlName="cartCvv" class="form-control"
+                                    placeholder="123" />
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-fill btn-primary" (click)="payment()">Öde</button>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-primary me-md-2" (click)="payment()">Öde</button>
+                     </div>
+                </div>
             </div>
         </div>
-    </div>
+    </div>    
 </div>
