@@ -1,0 +1,24 @@
+<div class="container" style="padding-top: 1%;">
+    <div class="row justify-content-md-center">
+      <div class="col-md-6">
+        <table class="table table-warning table-striped" style="background-color: gold;">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Ad</th>
+              <th scope="col">Soyad</th>
+              <th scope="col">Email</th>
+              <th scope="col">Durum</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let user of users">
+            <td scope="row">-</td>
+            <td scope="row">{{ user.firstName }}</td>
+            <td scope="row">{{ user.lastName }}</td>
+            <td scope="row">{{ user.email }}</td>
+            <td scope="row">{{ user.status }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>

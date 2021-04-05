@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginModel } from '../models/loginModel';
+import { LoginModel} from '../models/loginModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 import { TokenModel } from '../models/tokenModel';
 import { LocalStorageService } from './local-storage.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CustomerService } from './customer.service';
 import { Subject } from 'rxjs';
+import { RegisterModel } from '../models/registerModel';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +37,14 @@ export class AuthService {
     );
   }
 
+  register(register: RegisterModel) {
+    let newPath = this.apiUrl + 'auth/register';
+    return this.httpClient.post<SingleResponseModel<TokenModel>>(
+      newPath,
+      register
+    );
+  }
+
   async userDetailFromToken() {
     const helper = new JwtHelperService();
     let token: any = this.localStorageService.get('token');
@@ -52,4 +61,6 @@ export class AuthService {
   isAuthenticated() {
     return this.localStorageService.checkuserlogOff('token');
   }
+
+
 }

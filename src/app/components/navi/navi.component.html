@@ -13,8 +13,8 @@
         <li><a class="nav-link disabled">Kampanyalar</a></li>
       </ul>        
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-5">
-        <button type="button" class="btn btn-outline-light me-3" routerLink="/login">Login</button>
-        <button type="button" class="btn btn-warning" routerLink="/signup">Sign-up</button>
+        <button type="button" class="btn btn-outline-light me-3" routerLink="/login">Giriş Yap</button>
+        <button type="button" class="btn btn-warning" routerLink="/signup">Kayıt Ol</button>
       </div>
     </div>
   </div>
@@ -31,7 +31,8 @@
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a class="nav-link px-2 link-warning" routerLink="/cars">Anasayfa</a></li>
         <li><a class="nav-link px-2 text-white" routerLink="/customers"> Müşteriler</a></li>
-        <li><a class="nav-link px-2 text-white" routerLink="/rentals"> Kiralama Detay</a></li>
+        <li><a class="nav-link px-2 text-white" routerLink="/users"> Kullanıcılar</a></li>
+        <li><a class="nav-link px-2 text-white" routerLink="/rentals"> Kiralama Detayı</a></li>
         <!-- <li><a class="nav-link px-2 text-white">Products</a></li> -->
         <li>
           <div>
@@ -40,7 +41,7 @@
         </li>
       </ul>
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" style="width: 100px;">
-        <label style="border: 1px solid goldenrod; padding: 3%; border-radius: 25%;">{{authService.userName}} </label>
+        <label style="color: goldenrod; padding: 3%; ">{{authService.userName}} </label>
       </div>
       <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-4">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"

@@ -29,6 +29,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { UserComponent } from './components/user/user.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { FooterComponent } from './components/footer/footer.component';
     LoginComponent,
     SignupComponent,
     FooterComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

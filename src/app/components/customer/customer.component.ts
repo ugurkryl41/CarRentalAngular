@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from 'src/app/models/customer';
+import { CustomerDto } from 'src/app/models/customerDto';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CustomerService } from 'src/app/services/customer.service';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  customers:Customer[] = [];
+  customers:CustomerDto[] = [];
   constructor(private customerService:CustomerService) { }
 
   ngOnInit(): void {

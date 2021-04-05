@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Customer } from '../models/customer';
+import { CustomerDto } from '../models/customerDto';
 import { ListResponseModel } from '../models/listResponseModel';
 import { SingleResponseModel } from '../models/singleResponseModel';
 
@@ -14,14 +14,14 @@ export class CustomerService {
   
   private apiUrl="https://localhost:44399/api/";
 
-  getCustomers():Observable<ListResponseModel<Customer>>{
+  getCustomers():Observable<ListResponseModel<CustomerDto>>{
     let newPath=this.apiUrl+"customers/getalldetails";
-    return this.httpClient.get<ListResponseModel<Customer>>(newPath);
+    return this.httpClient.get<ListResponseModel<CustomerDto>>(newPath);
   }
 
   getByUserId(id:number){
     let newPath=this.apiUrl+"customers/getbyuserid?id="+id;
-    return this.httpClient.get<SingleResponseModel<Customer>>(newPath);  
+    return this.httpClient.get<SingleResponseModel<CustomerDto>>(newPath);  
   }
 
 }
