@@ -51,11 +51,12 @@ export class AuthService {
     const decodedToken = helper.decodeToken(token);       
     let name = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
     this.userName = name;
-    this.userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];  
+    this.userId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];     
     await this.customerService.getByUserId(this.userId).subscribe(response=>{
+     if(response.data !== null){
       this.customerId = response.data.id 
-    })
-        
+     }     
+    })        
   }
  
   isAuthenticated() {

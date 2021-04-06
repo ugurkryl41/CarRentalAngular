@@ -32,7 +32,9 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-fill btn-primary" (click)="createRent()">Kirala </button>
+                    <button class="btn btn-fill btn-primary" (click)="createRent()" 
+                    data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Kirala </button>
                 </div>
             </div>
         </div>  
@@ -43,3 +45,30 @@
          ></app-payment>
     </div>   
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="customercheck">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Müşteri Kaydı Oluştur</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="customerForm">
+                <div class="mb-3">
+                <label for="companyName">Şirket Adı Giriniz</label>
+                <div class="form-group">
+                    <input type="text" id="companyName" formControlName="companyName" class="form-control"
+                        placeholder="Ex: ABC.. etc" />
+                </div>
+            </div>
+          </form>   
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="createCustomer()">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
