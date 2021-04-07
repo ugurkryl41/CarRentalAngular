@@ -4,5 +4,6 @@ export interface User{
     password:string;
     firstName:string;
     lastName:string;
-    status:boolean;    
+    status:boolean;
+    findeks:number;    
 }

@@ -70,6 +70,7 @@ export class CarAddComponent implements OnInit {
       modelYear: ['', Validators.required],
       dailyPrice: ['', Validators.required],
       description: ['', Validators.required],
+      findeks: ['', Validators.required],
     });
   }
 
@@ -113,6 +114,7 @@ export class CarAddComponent implements OnInit {
       modelYear: ['', Validators.required],
       dailyPrice: ['', Validators.required],
       description: ['', Validators.required],
+      findeks: ['', Validators.required],
     });
   }
 
@@ -137,6 +139,9 @@ export class CarAddComponent implements OnInit {
                 'İşlem Başarısız..!!'
               );
             }
+          }
+          else{
+            this.toastrService.error('İşlem Başarısız..!!');
           }
         }
       );

@@ -5,4 +5,5 @@ export interface CarDto{
     modelYear:number;
     dailyPrice:number;
     description:string;
+    findeks:number;
 }

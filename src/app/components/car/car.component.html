@@ -62,9 +62,12 @@
               <li class="list-group-item list-group-item-primary">
                 Günlük fiyat: {{ car.dailyPrice | currency: "₺" }}
               </li>
+              <li class="list-group-item list-group-item-primary">
+                Findeks puanı: {{ car.findeks}}
+              </li>
               <li class="list-group-item list-group-item-warning">
                 <button class="btn btn-warning" type="button" style="width: 100%;"
-                  routerLink="/car-rent/{{ car.id }}">Kirala</button>
+                  (click)="rent(car.findeks,car.id)">Kirala</button>
               </li>
             </p>
           </div>

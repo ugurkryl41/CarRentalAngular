@@ -9,16 +9,21 @@
               <th scope="col">Soyad</th>
               <th scope="col">Email</th>
               <th scope="col">Durum</th>
+              <th scope="col">Findeks Puanı</th>
             </tr>
           </thead>
-          <tr *ngFor="let user of users">
-            <td scope="row">-</td>
-            <td scope="row">{{ user.firstName }}</td>
-            <td scope="row">{{ user.lastName }}</td>
-            <td scope="row">{{ user.email }}</td>
-            <td scope="row">{{ user.status }}</td>
-          </tr>
+          <tbody>
+            <tr *ngFor="let user of users; let i = index;">
+              <th scope="row">{{i+1}}</th>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.status }}</td>
+              <td>{{ user.findeks }}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
   </div>
+ 

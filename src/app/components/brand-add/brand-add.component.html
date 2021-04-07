@@ -34,8 +34,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let brand of brands">
-                        <th scope="row">-</th>
+                    <tr *ngFor="let brand of brands; let i=index;">
+                        <th scope="row">{{i+1}}</th>
                         <th> {{brand.id}} </th>
                         <th> {{brand.brandName}} </th>
                         <th>

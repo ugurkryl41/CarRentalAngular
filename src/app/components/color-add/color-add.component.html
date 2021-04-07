@@ -34,8 +34,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let color of colors">
-                        <th scope="row">-</th>
+                    <tr *ngFor="let color of colors; let i=index;">
+                        <th scope="row">{{i+1}}</th>
                         <th> {{color.id}} </th>
                         <th> {{color.colorName}} </th>
                         <th>

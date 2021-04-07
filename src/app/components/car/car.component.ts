@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
+import { Car } from 'src/app/models/car';
 import { CarDto } from 'src/app/models/car-dto';
 import { CarImage } from 'src/app/models/carImage';
 import { Color } from 'src/app/models/color';
+import { AuthService } from 'src/app/services/auth.service';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
@@ -36,7 +39,9 @@ export class CarComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private carImageService: CarImageService,
     private brandService: BrandService,
-    private colorService: ColorService
+    private colorService: ColorService,
+    private authService:AuthService,
+    private toastrService:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -144,5 +149,17 @@ export class CarComponent implements OnInit {
     this.brandText= { id: -1, brandName: 'Marka Seçiniz' };
     this.colorText= { id: -1, colorName: 'Renk Seçiniz' };
   } 
+
+  rent(findeksScore:number,carx:any){
+
+    if(findeksScore > this.authService.userFindeks)
+    {
+      this.toastrService.warning("Findeks Puanı yetersiz");      
+    }
+    else{
+      window.location.assign("/car-rent/"+carx);
+    }
+
+  }
   
 }

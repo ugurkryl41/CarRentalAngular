@@ -15,15 +15,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let rental of rentals" [class]="returnDateCheck(rental)">
-            <td scope="row"> - </td>
-            <td scope="row">{{ rental.brandName }}</td>
-            <td scope="row">{{ rental.colorName }}</td>
-            <td scope="row">{{ rental.firstName }}</td>
-            <td scope="row">{{ rental.lastName }}</td>
-            <td scope="row">{{ rental.companyName }}</td>
-            <td scope="row">{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
-            <td scope="row">{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
+          <tr *ngFor="let rental of rentals; let i=index;" [class]="returnDateCheck(rental)">
+            <th scope="row"> {{i+1}} </th>
+            <td>{{ rental.brandName }}</td>
+            <td>{{ rental.colorName }}</td>
+            <td>{{ rental.firstName }}</td>
+            <td>{{ rental.lastName }}</td>
+            <td>{{ rental.companyName }}</td>
+            <td>{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
+            <td>{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
           </tr>
         </tbody>
       </table>

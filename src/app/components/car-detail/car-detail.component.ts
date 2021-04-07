@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CarDto } from 'src/app/models/car-dto';
 import { CarImage } from 'src/app/models/carImage';
 import { Rental } from 'src/app/models/rental';
+import { AuthService } from 'src/app/services/auth.service';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 import { RentalService } from 'src/app/services/rental.service';
@@ -16,7 +18,7 @@ export class CarDetailComponent implements OnInit {
 
   dataCarId:number
 
-  carx:CarDto = {brandName:"",modelYear:-1,description:"",dailyPrice:-1,colorName:"",id:-1}
+  carx:CarDto = {brandName:"",modelYear:-1,description:"",dailyPrice:-1,colorName:"",id:-1,findeks:0}
 
   rentalscar:Rental[]
   carImages: CarImage[] = [];
@@ -26,7 +28,9 @@ export class CarDetailComponent implements OnInit {
   constructor( private activatedRoute: ActivatedRoute,
     private carService: CarService,    
     private rentalService: RentalService,
-    private carImagesService: CarImageService,) 
+    private carImagesService: CarImageService,
+    private authService:AuthService,
+    private toastrService:ToastrService) 
     {
     this.activatedRoute.params.subscribe((params) => {
       if (params['carid']) {
@@ -76,6 +80,18 @@ export class CarDetailComponent implements OnInit {
       return 'table-secondary'
     }
     return 'table-danger';
+  }
+
+  rent(findeksScore:number,carx:any){
+
+    if(findeksScore > this.authService.userFindeks)
+    {
+      this.toastrService.warning("Findeks Puanı yetersiz");      
+    }
+    else{
+      window.location.assign("/car-rent/"+carx);
+    }
+
   }
 
 }

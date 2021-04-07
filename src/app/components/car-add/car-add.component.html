@@ -42,6 +42,12 @@
                                 <input type="text" id="description" formControlName="description" class="form-control" />
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <label for="findeks">Findeks Puanı Girin</label>
+                            <div class="form-group">
+                                <input type="number" id="findeks" formControlName="findeks" class="form-control" />
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="card-footer">
@@ -51,7 +57,7 @@
         </div>
     </div>
     <div class="row justify-content-md-center">
-        <div class="col-md-6">
+        <div class="col-md-6" style="margin-top: 3%;">
         <table class="table">
             <thead>
                 <tr>
@@ -65,8 +71,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let cardto of carsDto">
-                    <th scope="row">-</th>
+                <tr *ngFor="let cardto of carsDto; let i=index;">
+                    <th scope="row">{{i+1}}</th>
                     <th> {{cardto.brandName}} </th>
                     <th> {{cardto.colorName}} </th>
                     <th> {{cardto.modelYear}} </th>
@@ -132,6 +138,12 @@
                         <label for="descriptionx">Açıklama Girin</label>
                         <div class="form-group">
                             <input type="text" id="descriptionx" formControlName="description" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="findeksx">Findeks Puanı Girin</label>
+                        <div class="form-group">
+                            <input type="number" id="findeksx" formControlName="findeks" class="form-control" />
                         </div>
                     </div>
                 </form>

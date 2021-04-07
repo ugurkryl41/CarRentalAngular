@@ -38,9 +38,12 @@
           <li class="list-group-item list-group-item-primary">
             Açıklama : {{ carx.description }}
           </li>
+          <li class="list-group-item list-group-item-primary">
+            Findeks Puanı : {{ carx.findeks }}
+          </li>
           <li class="list-group-item list-group-item-warning">
             <button class="btn btn-primary" type="button" style="width: 100%;"
-              routerLink="/car-rent/{{ carx.id }}">Kirala</button>
+            (click)="rent(carx.findeks,carx.id)">Kirala</button>
           </li>
         </p>
       </div>
@@ -72,15 +75,15 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let rental of rentalscar" [class]="returnDateCheck(rental)">
-                  <td scope="row"> - </td>          
-                  <td scope="row">{{ rental.brandName }}</td>
-                  <td scope="row">{{ rental.colorName }}</td>
-                  <td scope="row">{{ rental.firstName }}</td>
-                  <td scope="row">{{ rental.lastName }}</td>
-                  <td scope="row">{{ rental.companyName }}</td>
-                  <td scope="row">{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
-                  <td scope="row">{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
+                <tr *ngFor="let rental of rentalscar;let i=index" [class]="returnDateCheck(rental)">
+                  <th scope="row"> {{i+1}} </th>          
+                  <td>{{ rental.brandName }}</td>
+                  <td>{{ rental.colorName }}</td>
+                  <td>{{ rental.firstName }}</td>
+                  <td>{{ rental.lastName }}</td>
+                  <td>{{ rental.companyName }}</td>
+                  <td>{{ rental.rentDate | date: 'M/d/yy, h:mm a'}}</td>
+                  <td>{{ rental.returnDate | date: 'M/d/yy, h:mm a' }}</td>
                 </tr>
               </tbody>
             </table>
