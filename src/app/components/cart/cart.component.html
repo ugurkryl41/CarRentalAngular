@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row justify-content-md-center" style="margin-top: 2%;">
+        <div class="col-4">
+            <span>
+                <h2 style="color: goldenrod;">Kart Listesi</h2>
+            </span>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#cartAdd">Kart
+                Ekle</button>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-6">
+            <hr style="color: black;">
+            <table class="table table-warning table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Kart Üzerindeki İsim</th>
+                        <th scope="col">Kart Numarası</th>
+                        <th scope="col">Kart Tarihi</th>
+                        <th scope="col">Kart Cvv</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cart of carts; let i=index;">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{cart.cartName}}</td>
+                        <td>{{cart.cartNumber}}</td>
+                        <td>{{cart.cartDate}}</td>
+                        <td>{{cart.cartCvv}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Kart Ekleme-->
+<div class="modal fade" id="cartAdd" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Kart Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Ekle</button>
+            </div>
+        </div>
+    </div>
+</div>

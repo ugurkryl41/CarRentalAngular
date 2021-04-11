@@ -30,6 +30,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { SignupComponent } from './components/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserComponent } from './components/user/user.component';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { UserComponent } from './components/user/user.component';
     SignupComponent,
     FooterComponent,
     UserComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

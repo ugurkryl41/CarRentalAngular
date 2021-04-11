@@ -6,6 +6,7 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
 import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
 import { CarRentComponent } from './components/car-rent/car-rent.component';
 import { CarComponent } from './components/car/car.component';
+import { CartComponent } from './components/cart/cart.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { LoginComponent } from './components/login/login.component';
@@ -62,6 +63,9 @@ const routes: Routes = [
   {
     path:"signup",  component:SignupComponent
   },  
+  {
+    path:"cart", component:CartComponent 
+  },
 ];
 
 @NgModule({
